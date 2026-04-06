@@ -3,29 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Julius Darang — Power Systems Engineer & Solopreneur</title>
+  <title>Julius Darang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
-    /* ── RESET & TOKENS ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0c0c0e;
-      --bg-2:      #111114;
-      --bg-3:      #18181d;
-      --border:    rgba(255,255,255,0.07);
-      --text:      #e8e8ea;
-      --muted:     #888896;
-      --accent:    #4a7cff;
-      --accent-2:  #7af4c8;
-      --serif:     'Playfair Display', Georgia, serif;
-      --sans:      'DM Sans', system-ui, sans-serif;
-      --mono:      'DM Mono', monospace;
-      --max:       860px;
-      --gutter:    clamp(1.5rem, 5vw, 3rem);
-      --radius:    0px;
+      --bg:      #0d0d0f;
+      --bg-1:    #131316;
+      --border:  rgba(255,255,255,0.08);
+      --text:    #d4d4d8;
+      --dim:     #52525b;
+      --bright:  #fafafa;
+      --accent:  #4f7dff;
+      --sans:    'DM Sans', system-ui, sans-serif;
+      --max:     780px;
+      --pad:     clamp(1.25rem, 4vw, 2.5rem);
     }
 
     html { scroll-behavior: smooth; }
@@ -34,563 +29,417 @@
       background: var(--bg);
       color: var(--text);
       font-family: var(--sans);
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 0.9375rem;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
 
-    /* ── LAYOUT HELPERS ─────────────────────────────────────────── */
     .wrap {
-      width: 100%;
       max-width: var(--max);
       margin-inline: auto;
-      padding-inline: var(--gutter);
+      padding-inline: var(--pad);
     }
 
-    /* ── NAV ────────────────────────────────────────────────────── */
+    /* ── NAV ── */
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 10;
       border-bottom: 1px solid var(--border);
-      background: rgba(12,12,14,0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(13,13,15,0.9);
+      backdrop-filter: blur(12px);
     }
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-block: 1.1rem;
+      padding-block: 0.9rem;
     }
     .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
+      font-size: 0.8rem;
       font-weight: 500;
+      color: var(--bright);
+      letter-spacing: 0.04em;
     }
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.75rem;
       list-style: none;
     }
     .nav-links a {
-      font-size: 0.82rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.2s;
+      font-size: 0.8rem;
+      color: var(--dim);
+      transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--text); }
 
-    /* ── HERO ───────────────────────────────────────────────────── */
+    /* ── HERO ── */
     .hero {
-      padding-top: clamp(5rem, 12vw, 8rem);
-      padding-bottom: clamp(4rem, 10vw, 7rem);
+      padding-top: 4rem;
+      padding-bottom: 3.5rem;
       border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 10%, rgba(74,124,255,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 90%, rgba(122,244,200,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 28px;
-      height: 1px;
-      background: var(--accent);
+    .hero-name {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--dim);
+      margin-bottom: 1.25rem;
     }
     .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
-      font-weight: 900;
-      line-height: 1.12;
-      letter-spacing: -0.01em;
-      max-width: 14ch;
-      margin-bottom: 1.6rem;
+      font-size: clamp(1.75rem, 4.5vw, 2.6rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--bright);
+      letter-spacing: -0.02em;
+      max-width: 22ch;
+      margin-bottom: 1.25rem;
     }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent-2);
+    .hero h1 strong {
+      font-weight: 600;
     }
     .hero-sub {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 52ch;
-      margin-bottom: 2.4rem;
-      line-height: 1.75;
+      font-size: 0.875rem;
+      color: var(--dim);
+      max-width: 42ch;
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
     }
     .hero-cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 0.7rem 1.4rem;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .hero-cta:hover { opacity: 0.85; transform: translateY(-1px); }
-    .hero-cta svg { width: 14px; height: 14px; }
-    .hero-stats {
-      display: flex;
-      gap: 2.4rem;
-      margin-top: 3.5rem;
-      flex-wrap: wrap;
-    }
-    .hero-stat-num {
-      font-family: var(--serif);
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-    }
-    .hero-stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-top: 0.25rem;
-    }
-
-    /* ── SECTION LABEL ──────────────────────────────────────────── */
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(1.7rem, 4vw, 2.6rem);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 0.6rem;
-    }
-    .section-desc {
-      color: var(--muted);
-      max-width: 52ch;
-      margin-bottom: 2.8rem;
-      font-size: 0.95rem;
-    }
-
-    /* ── DIVIDER ────────────────────────────────────────────────── */
-    .section-block {
-      padding-block: clamp(3.5rem, 8vw, 6rem);
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* ── RESOURCES / PROJECTS ───────────────────────────────────── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
-      gap: 1px;
-      border: 1px solid var(--border);
-    }
-    .card {
-      background: var(--bg-2);
-      padding: 1.8rem;
-      transition: background 0.2s;
-      position: relative;
-    }
-    .card:hover { background: var(--bg-3); }
-    .card-tag {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.9rem;
-    }
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 500;
-      margin-bottom: 0.55rem;
-      line-height: 1.4;
-    }
-    .card p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 1.2rem;
-    }
-    .card-link {
+      gap: 0.4rem;
       font-size: 0.8rem;
       font-weight: 500;
       color: var(--accent);
-      letter-spacing: 0.04em;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: gap 0.2s;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 0.1rem;
+      transition: opacity 0.15s;
     }
-    .card:hover .card-link { gap: 0.55rem; }
+    .hero-cta:hover { opacity: 0.7; }
 
-    /* ── BLOG POSTS ─────────────────────────────────────────────── */
-    .post-list { display: flex; flex-direction: column; gap: 0; }
+    /* ── SECTION ── */
+    .section {
+      padding-block: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+    .section-head h2 {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .section-head a {
+      font-size: 0.78rem;
+      color: var(--dim);
+      transition: color 0.15s;
+    }
+    .section-head a:hover { color: var(--text); }
+
+    /* ── PROJECTS ── */
+    .project-list { display: flex; flex-direction: column; }
+    .project-item {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      align-items: start;
+      gap: 1rem;
+      padding-block: 1.1rem;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.15s;
+    }
+    .project-item:last-child { border-bottom: none; }
+    .project-item:hover { padding-left: 0.4rem; }
+    .project-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--bright);
+      margin-bottom: 0.2rem;
+    }
+    .project-desc {
+      font-size: 0.825rem;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+    .project-tag {
+      font-size: 0.73rem;
+      color: var(--dim);
+      text-align: right;
+      padding-top: 0.1rem;
+    }
+
+    /* ── WRITING ── */
+    .post-list { display: flex; flex-direction: column; }
     .post-item {
       display: grid;
       grid-template-columns: 1fr auto;
-      align-items: start;
-      gap: 1rem;
-      padding-block: 1.4rem;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding-block: 0.9rem;
       border-bottom: 1px solid var(--border);
-      transition: padding-left 0.2s;
       cursor: pointer;
+      transition: padding-left 0.15s;
     }
-    .post-item:hover { padding-left: 0.5rem; }
-    .post-item:first-child { border-top: 1px solid var(--border); }
-    .post-category {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.35rem;
-    }
+    .post-item:last-child { border-bottom: none; }
+    .post-item:hover { padding-left: 0.4rem; }
     .post-title {
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.45;
+      font-size: 0.875rem;
+      color: var(--text);
+      line-height: 1.5;
     }
-    .post-date {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
+    .post-meta {
+      font-size: 0.73rem;
+      color: var(--dim);
       white-space: nowrap;
-      padding-top: 0.2rem;
     }
 
-    /* ── NEWSLETTER ─────────────────────────────────────────────── */
-    .newsletter-block {
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      padding: clamp(2rem, 6vw, 3.5rem);
-      text-align: center;
+    /* ── NEWSLETTER ── */
+    .newsletter-inner {
+      padding-block: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 2rem;
+      align-items: center;
     }
-    .newsletter-block .section-label { justify-content: center; display: flex; }
-    .newsletter-block .section-title { max-width: 22ch; margin-inline: auto; margin-bottom: 0.5rem; }
-    .newsletter-block p { color: var(--muted); max-width: 45ch; margin-inline: auto; margin-bottom: 2rem; font-size: 0.95rem; }
+    .newsletter-inner h2 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--bright);
+      line-height: 1.4;
+      margin-bottom: 0.3rem;
+    }
+    .newsletter-inner p {
+      font-size: 0.825rem;
+      color: var(--dim);
+      line-height: 1.65;
+    }
     .newsletter-form {
       display: flex;
-      gap: 0;
-      max-width: 420px;
-      margin-inline: auto;
       border: 1px solid var(--border);
     }
     .newsletter-form input {
       flex: 1;
-      background: var(--bg-2);
+      background: var(--bg-1);
       border: none;
       outline: none;
-      padding: 0.75rem 1rem;
+      padding: 0.65rem 0.9rem;
       color: var(--text);
       font-family: var(--sans);
-      font-size: 0.88rem;
+      font-size: 0.825rem;
+      min-width: 0;
     }
-    .newsletter-form input::placeholder { color: var(--muted); }
+    .newsletter-form input::placeholder { color: var(--dim); }
     .newsletter-form button {
       background: var(--accent);
       color: #fff;
       border: none;
-      padding: 0.75rem 1.2rem;
+      padding: 0.65rem 1rem;
       font-family: var(--sans);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 500;
       cursor: pointer;
-      letter-spacing: 0.04em;
       white-space: nowrap;
-      transition: opacity 0.2s;
+      transition: opacity 0.15s;
     }
-    .newsletter-form button:hover { opacity: 0.85; }
+    .newsletter-form button:hover { opacity: 0.8; }
 
-    /* ── ABOUT ──────────────────────────────────────────────────── */
-    .about-grid {
+    /* ── ABOUT ── */
+    .about-inner {
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: clamp(2rem, 6vw, 4rem);
+      grid-template-columns: 1fr 2.2fr;
+      gap: 2.5rem;
       align-items: start;
+      padding-block: 2.5rem;
     }
+    .about-left { padding-top: 0.2rem; }
     .about-avatar {
       width: 100%;
       aspect-ratio: 1;
-      object-fit: cover;
-      filter: grayscale(20%);
-      background: var(--bg-3);
-    }
-    .about-avatar-placeholder {
-      width: 100%;
-      aspect-ratio: 1;
-      background: var(--bg-3);
+      background: var(--bg-1);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 4rem;
-      color: var(--muted);
-    }
-    .about-body h2 {
-      font-family: var(--serif);
-      font-size: 1.9rem;
-      font-weight: 700;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      line-height: 1.25;
     }
-    .about-body p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 0.9rem;
-    }
-    .about-body strong { color: var(--text); font-weight: 500; }
     .about-socials {
       display: flex;
-      gap: 1rem;
-      margin-top: 1.6rem;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 0.35rem;
     }
     .about-socials a {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.45rem 0.85rem;
-      transition: color 0.2s, border-color 0.2s;
+      font-size: 0.78rem;
+      color: var(--dim);
+      transition: color 0.15s;
     }
-    .about-socials a:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* ── TOOLS STRIP ────────────────────────────────────────────── */
-    .tools-strip {
+    .about-socials a:hover { color: var(--text); }
+    .about-right h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--bright);
+      margin-bottom: 0.8rem;
+    }
+    .about-right p {
+      font-size: 0.875rem;
+      color: var(--dim);
+      margin-bottom: 0.75rem;
+      line-height: 1.7;
+    }
+    .about-right p strong { color: var(--text); font-weight: 500; }
+    .tools {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 2rem;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
     }
-    .tool-badge {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--accent-2);
-      border: 1px solid rgba(122,244,200,0.2);
-      padding: 0.3rem 0.7rem;
-      letter-spacing: 0.06em;
+    .tool {
+      font-size: 0.73rem;
+      color: var(--dim);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
     }
 
-    /* ── FOOTER ─────────────────────────────────────────────────── */
+    /* ── FOOTER ── */
     footer {
-      padding-block: 2.5rem;
+      padding-block: 1.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
     }
-    .footer-logo {
-      font-family: var(--mono);
+    footer span, footer a {
       font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
+      color: var(--dim);
     }
-    .footer-copy {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
+    footer a:hover { color: var(--text); }
 
-    /* ── ANIMATIONS ─────────────────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .hero > .wrap > * {
-      animation: fadeUp 0.7s ease both;
-    }
-    .hero > .wrap > *:nth-child(1) { animation-delay: 0.05s; }
-    .hero > .wrap > *:nth-child(2) { animation-delay: 0.15s; }
-    .hero > .wrap > *:nth-child(3) { animation-delay: 0.25s; }
-    .hero > .wrap > *:nth-child(4) { animation-delay: 0.32s; }
-    .hero > .wrap > *:nth-child(5) { animation-delay: 0.4s; }
-
-    /* ── RESPONSIVE ─────────────────────────────────────────────── */
-    @media (max-width: 600px) {
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) {
       .nav-links { display: none; }
-      .about-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 1.6rem; }
+      .newsletter-inner { grid-template-columns: 1fr; gap: 1.25rem; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-avatar { width: 72px; aspect-ratio: 1; font-size: 1.5rem; }
+      .about-left { display: flex; gap: 1.25rem; align-items: center; }
+      .about-socials { flex-direction: row; flex-wrap: wrap; gap: 0.75rem; }
+      .project-item { grid-template-columns: 1fr; }
+      .project-tag { text-align: left; }
       .post-item { grid-template-columns: 1fr; }
-      .post-date { display: none; }
+      .post-meta { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <div class="wrap nav-inner">
-      <span class="nav-logo">JD</span>
+      <span class="nav-logo">Julius Darang</span>
       <ul class="nav-links">
-        <li><a href="#writing">Writing</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#writing">Writing</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <p class="hero-eyebrow">Power Systems · Renewable Energy · Solopreneurship</p>
-      <h1>Engineer the Grid.<br /><em>Build the Self.</em></h1>
-      <p class="hero-sub">
-        I model power systems by day and write about systems thinking, technology,
-        and the examined life by night. This is where both worlds converge.
-      </p>
+      <p class="hero-name">Power Systems Engineer · Philippines</p>
+      <h1>Think in systems.<br /><strong>Build what matters.</strong></h1>
+      <p class="hero-sub">I model power grids and write about the ideas that make engineers think differently — systems, AI, and the examined life.</p>
       <a href="#newsletter" class="hero-cta">
-        Read the Newsletter
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 8h10M9 4l4 4-4 4"/>
-        </svg>
+        Get the newsletter
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 6h7M6.5 3l3 3-3 3"/></svg>
       </a>
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">REE</div>
-          <div class="hero-stat-label">PRC Licensed</div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <a href="#">View all →</a>
+      </div>
+      <div class="project-list">
+        <div class="project-item">
+          <div>
+            <p class="project-name">Visayas Grid N-1 Contingency Model</p>
+            <p class="project-desc">Python + pandapower simulation of the Philippine Visayas grid with N-1 contingency analysis and renewable integration.</p>
+          </div>
+          <p class="project-tag">Power Systems</p>
         </div>
-        <div>
-          <div class="hero-stat-num">7+</div>
-          <div class="hero-stat-label">Years in Power Systems</div>
+        <div class="project-item">
+          <div>
+            <p class="project-name">PVsyst Solar Yield Studies</p>
+            <p class="project-desc">Bankable solar energy assessments for utility-scale PH projects covering shading, soiling, and performance ratio.</p>
+          </div>
+          <p class="project-tag">Renewable Energy</p>
         </div>
-        <div>
-          <div class="hero-stat-num">PH</div>
-          <div class="hero-stat-label">Visayas Grid</div>
+        <div class="project-item">
+          <div>
+            <p class="project-name">Content Automation Pipeline</p>
+            <p class="project-desc">n8n + Anthropic API workflow that drafts and schedules content across Substack, Threads, and LinkedIn from Obsidian.</p>
+          </div>
+          <p class="project-tag">AI Tooling</p>
+        </div>
+        <div class="project-item">
+          <div>
+            <p class="project-name">Power Flow Web Interface</p>
+            <p class="project-desc">Flask + pandapower REST API with a minimal frontend for running load flow studies without a desktop simulation tool.</p>
+          </div>
+          <p class="project-tag">Software</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section class="section-block" id="projects">
+  <section class="section" id="writing">
     <div class="wrap">
-      <p class="section-label">// Projects</p>
-      <h2 class="section-title">Selected Work</h2>
-      <p class="section-desc">
-        Technical projects at the intersection of renewable energy modelling,
-        AI tooling, and power systems engineering.
-      </p>
-
-      <div class="card-grid">
-        <div class="card">
-          <p class="card-tag">Power Systems</p>
-          <h3>Visayas Grid N-1 Contingency Model</h3>
-          <p>Python + pandapower simulation of the Philippine Visayas grid including geothermal, coal, and renewable integration with N-1 contingency analysis.</p>
-          <a href="#" class="card-link">View Project →</a>
-        </div>
-        <div class="card">
-          <p class="card-tag">Renewable Energy</p>
-          <h3>PVsyst Solar Yield Studies</h3>
-          <p>Bankable solar energy yield assessments for utility-scale projects in the Philippines, covering shading, soiling loss, and performance ratio benchmarking.</p>
-          <a href="#" class="card-link">View Project →</a>
-        </div>
-        <div class="card">
-          <p class="card-tag">AI Tooling</p>
-          <h3>Personal Brand Automation Pipeline</h3>
-          <p>n8n + Anthropic API workflow for drafting, scheduling, and publishing content across Substack, Threads, and LinkedIn from a single Obsidian vault.</p>
-          <a href="#" class="card-link">View Project →</a>
-        </div>
-        <div class="card">
-          <p class="card-tag">Software</p>
-          <h3>Power Flow Web Interface</h3>
-          <p>Flask + pandapower REST API wrapped in a minimal frontend for running load flow studies without a desktop simulation environment.</p>
-          <a href="#" class="card-link">View Project →</a>
-        </div>
+      <div class="section-head">
+        <h2>Writing</h2>
+        <a href="#">View all →</a>
       </div>
-    </div>
-  </section>
-
-  <!-- WRITING -->
-  <section class="section-block" id="writing">
-    <div class="wrap">
-      <p class="section-label">// Writing</p>
-      <h2 class="section-title">Explore the Ideas</h2>
-      <p class="section-desc">
-        Deep dives on power systems, productivity, philosophy, and the future of
-        technical work in the age of AI.
-      </p>
-
       <div class="post-list">
         <div class="post-item">
-          <div>
-            <p class="post-category">Power Systems</p>
-            <p class="post-title">Why the Visayas Grid is the Most Interesting Engineering Problem in the Philippines</p>
-          </div>
-          <p class="post-date">Mar 2026</p>
+          <p class="post-title">Why the Visayas Grid is the most interesting engineering problem in the Philippines</p>
+          <p class="post-meta">Mar 2026</p>
         </div>
         <div class="post-item">
-          <div>
-            <p class="post-category">AI & Tools</p>
-            <p class="post-title">How I Use AI Agents to Automate 80% of My Content Workflow Without Losing My Voice</p>
-          </div>
-          <p class="post-date">Feb 2026</p>
+          <p class="post-title">How I use AI agents to automate 80% of my content workflow without losing my voice</p>
+          <p class="post-meta">Feb 2026</p>
         </div>
         <div class="post-item">
-          <div>
-            <p class="post-category">Solopreneurship</p>
-            <p class="post-title">The Engineer Who Writes: Why Technical Credibility Is the Unfair Advantage Nobody Talks About</p>
-          </div>
-          <p class="post-date">Feb 2026</p>
+          <p class="post-title">The engineer who writes: why technical credibility is the unfair advantage nobody talks about</p>
+          <p class="post-meta">Feb 2026</p>
         </div>
         <div class="post-item">
-          <div>
-            <p class="post-category">Philosophy</p>
-            <p class="post-title">Systems Thinking Is a Way of Life, Not Just an Engineering Methodology</p>
-          </div>
-          <p class="post-date">Jan 2026</p>
+          <p class="post-title">Systems thinking is a way of life, not just an engineering methodology</p>
+          <p class="post-meta">Jan 2026</p>
         </div>
         <div class="post-item">
-          <div>
-            <p class="post-category">Productivity</p>
-            <p class="post-title">The Polymath's Stack: How I Manage Two Careers Without Burning Out</p>
-          </div>
-          <p class="post-date">Jan 2026</p>
+          <p class="post-title">The polymath's stack: how I manage two careers without burning out</p>
+          <p class="post-meta">Jan 2026</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section class="section-block" id="newsletter">
+  <section class="section" id="newsletter">
     <div class="wrap">
-      <div class="newsletter-block">
-        <p class="section-label">// Newsletter</p>
-        <h2 class="section-title">Think Deeper.<br/>Build Smarter.</h2>
-        <p>Join engineers and thinkers getting weekly essays on power systems, AI tools, and building a meaningful technical career.</p>
+      <div class="newsletter-inner">
+        <div>
+          <h2>Think deeper.<br />Build smarter.</h2>
+          <p>Weekly essays on power systems, AI tools, and building a meaningful technical career.</p>
+        </div>
         <form class="newsletter-form" onsubmit="return false;">
           <input type="email" placeholder="your@email.com" />
           <button type="submit">Subscribe</button>
@@ -599,58 +448,42 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section-block" id="about">
+  <section class="section" id="about">
     <div class="wrap">
-      <div class="about-grid">
-        <div class="about-avatar-placeholder">⚡</div>
-        <div class="about-body">
-          <p class="section-label">// About</p>
-          <h2>Hey, I'm Julius.</h2>
-          <p>
-            I'm a <strong>Registered Electrical Engineer</strong> specialising in renewable energy
-            and power systems modelling in the Philippines. I work with tools like
-            DIgSILENT PowerFactory, ETAP, PVsyst, and pandapower to solve real grid problems.
-          </p>
-          <p>
-            Alongside the technical work, I write about the intersection of <strong>systems thinking,
-            AI, productivity, and philosophy</strong> — the ideas that help engineers build careers,
-            not just projects.
-          </p>
-          <p>
-            I run a Substack and create content on Threads and Instagram. My goal is simple:
-            to be the bridge between <strong>deep technical expertise</strong> and <strong>clear,
-            compelling communication</strong> for the next generation of Filipino engineers.
-          </p>
-          <div class="tools-strip">
-            <span class="tool-badge">MATLAB/Simulink</span>
-            <span class="tool-badge">PowerFactory</span>
-            <span class="tool-badge">pandapower</span>
-            <span class="tool-badge">PVsyst</span>
-            <span class="tool-badge">ETAP</span>
-            <span class="tool-badge">Python</span>
-            <span class="tool-badge">Flask</span>
-          </div>
+      <div class="about-inner">
+        <div class="about-left">
+          <div class="about-avatar">⚡</div>
           <div class="about-socials">
             <a href="#">Substack</a>
             <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
             <a href="#">Threads</a>
             <a href="#">Instagram</a>
-            <a href="#">GitHub</a>
+          </div>
+        </div>
+        <div class="about-right">
+          <h2>Hey, I'm Julius.</h2>
+          <p>I'm a <strong>Registered Electrical Engineer (REE)</strong> specialising in renewable energy and power systems modelling in the Philippines.</p>
+          <p>Alongside the technical work, I write about <strong>systems thinking, AI, productivity, and philosophy</strong> — the ideas that help engineers build careers, not just projects.</p>
+          <p>My goal is to be the bridge between deep technical expertise and clear communication for the next generation of Filipino engineers.</p>
+          <div class="tools">
+            <span class="tool">MATLAB/Simulink</span>
+            <span class="tool">PowerFactory</span>
+            <span class="tool">pandapower</span>
+            <span class="tool">PVsyst</span>
+            <span class="tool">ETAP</span>
+            <span class="tool">Python</span>
+            <span class="tool">Flask</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <div class="wrap">
-    <footer id="contact">
-      <span class="footer-logo">Julius Darang — REE</span>
-      <span class="footer-copy">
-        <a href="mailto:hello@example.com" style="color: var(--muted); border-bottom: 1px solid var(--border);">hello@example.com</a>
-        &nbsp;·&nbsp; © 2026
-      </span>
+    <footer>
+      <span>Julius Darang — REE · Philippines</span>
+      <a href="mailto:hello@example.com">hello@example.com</a>
     </footer>
   </div>
 
