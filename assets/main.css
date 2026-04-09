@@ -177,6 +177,8 @@ nav {
 	border-bottom: 1px solid var(--border);
 	cursor: pointer;
 	transition: padding-left 0.15s;
+	text-decoration: none;
+	color: inherit;
 }
 .post-item:last-child { border-bottom: none; }
 .post-item:hover { padding-left: 0.4rem; }
@@ -214,6 +216,7 @@ nav {
 .newsletter-form {
 	display: flex;
 	border: 1px solid var(--border);
+	text-decoration: none;
 }
 .newsletter-form input {
 	flex: 1;
@@ -227,7 +230,7 @@ nav {
 	min-width: 0;
 }
 .newsletter-form input::placeholder { color: var(--dim); }
-.newsletter-form button {
+.newsletter-form button, .newsletter-form span {
 	background: var(--dim);
 	color: #fff;
 	border: none;
