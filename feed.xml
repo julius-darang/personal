@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Julius Darang</title>
+    <link>https://juliusdarang.com</link>
+    <description>Power Systems Engineer · Writing about systems, AI, and building a meaningful technical career.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Apr 2026 12:00:00 +0000</lastBuildDate>
+    <atom:link href="https://juliusdarang.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Why the Visayas Grid is the most interesting engineering problem in the Philippines</title>
+      <link>https://juliusdarang.com/blogs/blogs.html</link>
+      <description>An isolated island grid, aggressive renewable targets, and aging infrastructure — this is what makes the Visayas one of the most complex power systems in Southeast Asia.</description>
+      <pubDate>Thu, 01 Mar 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/blogs.html</guid>
+    </item>
+    
+    <item>
+      <title>How I use AI agents to automate 80% of my content workflow without losing my voice</title>
+      <link>https://juliusdarang.com/blogs/blogs.html</link>
+      <description>AI workflow automation for content creation while maintaining authentic voice.</description>
+      <pubDate>Thu, 01 Feb 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/blogs.html</guid>
+    </item>
+    
+    <item>
+      <title>The engineer who writes: why technical credibility is the unfair advantage nobody talks about</title>
+      <link>https://juliusdarang.com/blogs/blogs.html</link>
+      <description>Why writing about technical work builds credibility and opens doors.</description>
+      <pubDate>Thu, 15 Feb 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/blogs.html</guid>
+    </item>
+    
+    <item>
+      <title>Systems thinking is a way of life, not just an engineering methodology</title>
+      <link>https://juliusdarang.com/blogs/blogs.html</link>
+      <description>Applying systems thinking beyond engineering to life and career decisions.</description>
+      <pubDate>Thu, 01 Jan 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/blogs.html</guid>
+    </item>
+    
+    <item>
+      <title>The polymath's stack: how I manage two careers without burning out</title>
+      <link>https://juliusdarang.com/blogs/blogs.html</link>
+      <description>Balancing engineering work with writing and content creation.</description>
+      <pubDate>Thu, 15 Jan 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/blogs.html</guid>
+    </item>
+    
+  </channel>
+</rss>
