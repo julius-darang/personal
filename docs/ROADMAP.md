@@ -77,10 +77,9 @@ Existing posts to keep: "How I created and deployed a website" (AI-builder proof
 
 ## Structural changes
 
-- [ ] **Sharpen the hero.** Add an explicit positioning line, e.g.
-      *"Power-systems engineer who builds AI-native software."* Make the rare combo
-      legible in ~3 seconds. (Keep "Think in systems. Build what matters." as brand
-      flavor underneath.)
+- [x] **Sharpen the hero.** Eyebrow line now reads "Power-Systems Engineer ·
+      AI-Native Builder"; sub-headline mentions building software with AI agents.
+      "Think in systems. Build what matters." kept as brand flavor (2026-06-04).
 - [ ] **Add case-study pages** (visayasgrid first, powergrid later). Highest-leverage
       structural change — depth separates a portfolio from a link list.
 - [ ] **Make GitHub prominent**; ensure pinned repos shine. Give visayasgrid's README
