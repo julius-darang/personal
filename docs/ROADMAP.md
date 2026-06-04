@@ -55,9 +55,11 @@ presentation**, not more building. Avoid spreading thin across half-built projec
 Priority order. Note 1–3 all mine the *same two projects* — more to say without
 more to build.
 
-- [ ] **1. "How I built and deployed a Philippine grid simulator with AI agents"**
-      — highest-leverage post. Domain × AI × software × shipping, with a live link.
-      The post that makes a remote AI company reach out.
+- [x] **1. "I built a live model of the Philippine grid. The code was the easy
+      part."** — published 2026-06-04 at `blogs/modelling-the-philippine-grid.html`.
+      Leads with the AI-workflow-honestly angle (where domain judgment was
+      irreplaceable: slack bus, mixed-voltage transformers, plausible-but-wrong
+      DC answer). Domain × AI × software × shipping, with a live link.
 - [ ] **2. "Why I killed my own 11-week architecture and shipped in 2 weeks"**
       — the visayasgrid v2→v3 decision. Senior judgment (YAGNI, deploy-target-driven
       design). International hiring loves this story.

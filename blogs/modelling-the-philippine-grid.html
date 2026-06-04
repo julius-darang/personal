@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I built a live model of the Philippine grid. The code was the easy part. — Julius Darang</title>
+  <meta name="description" content="Most of the code for my Visayas grid model was written by AI. That was the cheap part. Getting the power flow physically correct came down to domain knowledge no tool could supply." />
+  <meta name="author" content="Julius Darang" />
+  <link rel="canonical" href="https://juliusdarang.com/blogs/modelling-the-philippine-grid.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="I built a live model of the Philippine grid. The code was the easy part." />
+  <meta property="og:description" content="The code came fast. Making the model physically correct came down to domain knowledge no tool could supply." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://juliusdarang.com/blogs/modelling-the-philippine-grid.html" />
+  <meta property="og:image" content="https://juliusdarang.com/assets/visayasgrid.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/main.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="nav-logo">Julius Darang</a>
+      <ul class="nav-links">
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../index.html#writing">Writing</a></li>
+        <li><a href="../index.html#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="article-header">
+    <div class="wrap">
+      <a href="../pages/writings.html" class="back-link">← Writing</a>
+      <div class="article-meta">
+        <span>Engineering · AI</span>
+        <span class="meta-dot">·</span>
+        <span>June 4, 2026</span>
+        <span class="meta-dot">·</span>
+        <span>7 min read</span>
+      </div>
+      <h1>I built a live model of the Philippine grid. The code was the easy part.</h1>
+      <p class="article-lede">Most of the code for this project was written by AI. That turned out to be the cheap part — and the part that mattered least to whether the model was right.</p>
+    </div>
+  </header>
+
+  <article class="article-body">
+    <div class="wrap">
+
+      <p><a href="https://visayasgrid.vercel.app">visayasgrid</a> is a live, public map of the Visayas transmission grid — the islands south of Luzon that NGCP runs at 69, 138, and 230 kV, tied to the national grid by a 350 kV HVDC link. You can open it, filter by island or voltage level, click any substation, and read a power-flow result for it. There's no server behind it: a Python pipeline computes everything offline, writes static GeoJSON, and a React and Leaflet frontend draws it. I covered how that architecture fits together in the <a href="../pages/visayasgrid.html">case study</a>. This post is about how it actually got built — and where AI carried me, versus where it couldn't.</p>
+
+      <h2>The code came fast</h2>
+      <p>I'll be honest about the workflow, because the honesty is the point. I build with AI agents in small, reviewed steps: describe the change, let the agent write it, read every diff, run the tests, keep a short journal of what changed and why. Most of visayasgrid was built this way. The two-stage data pipeline that cleans NGCP-coded source data and runs the load flow, the React components for the map and the inspect panel, the unit tests, a refactor that pulled every modelling constant into one cited file — all of it came together far faster than if I had typed it myself.</p>
+      <p>If you measured the project by lines of code, you would conclude the AI built it. That measurement would be wrong.</p>
+
+      <h2>Then I tried to make it correct</h2>
+      <p>Here is the trap with this kind of work: the model <em>runs</em> from almost day one. My first version used a DC power flow, and it produced a clean, complete answer — every bus sitting at exactly 1.000 per-unit voltage, flows on every line, a tidy summary. It looked finished.</p>
+      <p>It was useless. DC power flow assumes no voltage drop and ignores resistive losses entirely. The figure it gave me for the HVDC interchange was −475.9 MW. That is a plausible-looking number. The correct figure, once I switched to a full AC Newton-Raphson solution that accounts for I²R losses across a long, radial network, was −34.5 MW. The first answer was off by more than ten times, and nothing about how it looked would have told you that.</p>
+
+      <div class="section-break"><span>What the code couldn't tell me</span></div>
+
+      <p>Switching from DC to AC was not a one-line change, and the reason is the heart of this whole story. The Visayas is a mixed-voltage network — 350, 230, 138, and 69 kV buses all wired together. pandapower converts each line's impedance into per-unit using the nominal voltage of the buses at its ends. Connect a 230 kV bus straight to a 138 kV one with an ordinary line, and the per-unit impedance is inconsistent depending on which end you look from. The solver either diverges or hands you confident garbage. The fix was to insert proper transformer models between voltage levels — eleven intermediate transformer buses, for the seventeen cross-voltage connections in the data.</p>
+      <p>And then there was Ormoc. Ormoc is the AC terminus of the HVDC link, and the source data lists it at 350 kV. The obvious move — the move an eager assistant makes — is to model it at 350 kV. That is wrong. The 350 kV figure is the <em>DC link</em> voltage; the AC busbar there actually runs at 230 kV. Model it at 350 and every line touching it gets the wrong per-unit base, quietly poisoning the result. You only catch that if you know what an HVDC converter station physically is.</p>
+      <p>The list kept going, and every item was the same shape:</p>
+      <ul>
+        <li>The submarine cables between islands needed real IEC 60840 XLPE parameters, not the NGCP overhead values divided by a straight-line distance. The naive version solves fine and is physically meaningless.</li>
+        <li>The large generators had to be modelled as voltage-controlling PV buses, not constant injections, or the voltage profile is fiction.</li>
+        <li>The loads NGCP doesn't publish had to be estimated with defensible engineering assumptions — and flagged clearly as estimates, not laundered into the dataset as if they were measured.</li>
+        <li>Every result had to be checked against the published Visayas peak demand. A model that doesn't roughly match reality is a drawing, not a model.</li>
+      </ul>
+      <p>None of these were coding problems. An agent will happily produce a network that solves cleanly, renders beautifully, and is wrong — because "solves" and "correct" are different claims, and only one of them is visible on screen.</p>
+
+      <h2>The actual skill</h2>
+      <p>The leverage was never typing speed. It was knowing what to ask for, and — more importantly — knowing when a clean-looking result was lying to me. The AI was a genuinely fast pair of hands. It could not decide that Ormoc belonged at 230 kV, or that a flat 1.000 voltage everywhere meant the physics had been skipped, or that −475.9 MW was the kind of plausible wrong answer you have to go looking for. Those judgments came from the part of the work that isn't code at all.</p>
+      <p>That is the partnership that worked: a domain expert pointing a fast tool at the right problem and verifying its output against physical reality. Neither half is optional. Without the tool I'd still be typing boilerplate. Without the domain knowledge I'd have shipped something that looked authoritative and was quietly false — which is worse than shipping nothing.</p>
+
+      <h2>Why this matters if you're an engineer</h2>
+      <p>The common worry is that AI makes technical depth less valuable. My experience building this was the opposite. The faster it became to produce code, the more the bottleneck moved to the things code can't supply: knowing the domain, knowing what "correct" means, and being able to tell when a confident answer is wrong. If anything, AI raised the price of judgment.</p>
+      <p>If you have real domain knowledge, this is the best moment in a long time to build with it. The tool will handle the parts that used to slow you down. Your job is the part it can't do — and that part is worth more now, not less.</p>
+      <p>The result is <a href="https://visayasgrid.vercel.app">live here</a>, the build is written up in the <a href="../pages/visayasgrid.html">case study</a>, and the code is <a href="https://github.com/julius-darang/visayasgrid">on GitHub</a>.</p>
+
+    </div>
+  </article>
+
+  <div class="article-footer">
+    <div class="wrap">
+      <h3>More Writing</h3>
+      <div class="related-list">
+        <a href="how%20to%20create%20a%20website.html" class="related-item">
+          <p class="related-title">How I Created and Deployed a Website From Scratch</p>
+          <p class="related-date">Apr 2026</p>
+        </a>
+        <a href="how%20to%20build%20the%20life%20you%20want.html" class="related-item">
+          <p class="related-title">How to Build the Life You Actually Want</p>
+          <p class="related-date">Apr 2026</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <footer>
+      <span>Julius Darang — REE · Philippines</span>
+      <a href="mailto:julius.darang@gmail.com">julius.darang@gmail.com</a>
+    </footer>
+  </div>
+
+</body>
+</html>

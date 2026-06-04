@@ -9,6 +9,14 @@
     <atom:link href="https://juliusdarang.com/feed.xml" rel="self" type="application/rss+xml" />
 
     <item>
+      <title>I built a live model of the Philippine grid. The code was the easy part.</title>
+      <link>https://juliusdarang.com/blogs/modelling-the-philippine-grid.html</link>
+      <description>Most of the code for my Visayas grid model was written by AI. That was the cheap part. Getting the power flow physically correct came down to domain knowledge no tool could supply.</description>
+      <pubDate>Wed, 04 Jun 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/modelling-the-philippine-grid.html</guid>
+    </item>
+
+    <item>
       <title>How I Created and Deployed a Website From Scratch</title>
       <link>https://juliusdarang.com/blogs/how%20to%20create%20a%20website.html</link>
       <description>A step-by-step guide to generating, improving, and deploying a personal website using AI and GitHub Pages — with minimal experience and at zero cost.</description>
