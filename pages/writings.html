@@ -30,140 +30,11 @@
       </a>
       <h1>Writings</h1>
       <p>Articles and essays on engineering, technology, and Psychology & Philosophy.</p>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" onclick="filter('all', this)">All</button>
-        <button class="filter-btn" onclick="filter('Electrical Engineering', this)">Electrical Engineering</button>
-        <button class="filter-btn" onclick="filter('Psychology & Philosophy', this)">Psychology & Philosophy</button>
-        <button class="filter-btn" onclick="filter('AI & Software', this)">AI & Software</button>
-      </div>
     </div>
   </div>
 
   <div class="wrap">
     <div class="project-grid" id="project-grid">
-
-      <div class="project-card" data-category="Electrical Engineering" id="visayas-grid">
-        <div class="card-main">
-          <p class="card-tag">Electrical Engineering</p>
-          <p class="card-title">Visayas Grid N-1 Contingency Model</p>
-          <p class="card-desc">A Python-based simulation of the Philippine Visayas grid using pandapower. The model covers N-1 contingency analysis for transmission lines and generating units, voltage stability assessment, and the impact of increased renewable penetration on grid reliability. Benchmarked against NGCP published data.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">pandapower</span>
-            <span class="stack-tag">NumPy</span>
-            <span class="stack-tag">Matplotlib</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Active</span>
-          <a href="../blogs/blogs.html" class="card-link">Read Post →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Psychology & Philosophy" id="pvsyst">
-        <div class="card-main">
-          <p class="card-tag">Psychology & Philosophy</p>
-          <p class="card-title">PVsyst Solar Yield Studies</p>
-          <p class="card-desc">Bankable solar energy yield assessments for utility-scale projects across the Philippines. Covers detailed near and far shading analysis, soiling and IAM losses, degradation modelling, and P50/P90 yield estimates. Reports are structured for lender and investor review.</p>
-          <div class="card-stack">
-            <span class="stack-tag">PVsyst</span>
-            <span class="stack-tag">Meteonorm</span>
-            <span class="stack-tag">Excel</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Ongoing</span>
-          <a href="#" class="card-link">Case Study →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Electrical Engineering" id="etap-arc-flash">
-        <div class="card-main">
-          <p class="card-tag">Electrical Engineering</p>
-          <p class="card-title">Arc Flash Hazard Analysis — Industrial Facility</p>
-          <p class="card-desc">Full arc flash study for a 69kV/13.8kV industrial substation using ETAP. Includes short circuit analysis, protective device coordination, incident energy calculations per IEEE 1584-2018, and arc flash labelling recommendations.</p>
-          <div class="card-stack">
-            <span class="stack-tag">ETAP</span>
-            <span class="stack-tag">IEEE 1584</span>
-            <span class="stack-tag">AutoCAD</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Completed</span>
-          <a href="#" class="card-link">View Report →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="AI & Software" id="automation">
-        <div class="card-main">
-          <p class="card-tag">AI & Software</p>
-          <p class="card-title">Content Automation Pipeline</p>
-          <p class="card-desc">An n8n workflow connected to the Anthropic API that takes raw notes from Obsidian and generates drafts for Substack essays, LinkedIn carousels, and Threads posts. Includes a review step and brand-voice prompt system to keep the output consistent with my writing style.</p>
-          <div class="card-stack">
-            <span class="stack-tag">n8n</span>
-            <span class="stack-tag">Anthropic API</span>
-            <span class="stack-tag">Obsidian</span>
-            <span class="stack-tag">Substack API</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Active</span>
-          <a href="#" class="card-link">Read Post →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Psychology & Philosophy" id="power-flow">
-        <div class="card-main">
-          <p class="card-tag">Psychology & Philosophy</p>
-          <p class="card-title">Power Flow Web Interface</p>
-          <p class="card-desc">A lightweight Flask application that wraps pandapower's load flow solver behind a REST API and serves a minimal browser-based frontend. Designed for quick studies without requiring a full desktop simulation environment. Supports Newton-Raphson and DC approximation methods.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">Flask</span>
-            <span class="stack-tag">pandapower</span>
-            <span class="stack-tag">Vanilla JS</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Active</span>
-          <a href="#" class="card-link">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Electrical Engineering" id="digsilent-model">
-        <div class="card-main">
-          <p class="card-tag">Electrical Engineering</p>
-          <p class="card-title">DIgSILENT PowerFactory Grid Model</p>
-          <p class="card-desc">Steady-state and dynamic simulation model of a 230kV transmission network in DIgSILENT PowerFactory. Includes RMS simulation for fault analysis, governor and AVR modelling, and small-signal stability study using eigenvalue analysis.</p>
-          <div class="card-stack">
-            <span class="stack-tag">DIgSILENT PowerFactory</span>
-            <span class="stack-tag">DPL Script</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Completed</span>
-          <a href="#" class="card-link">Details →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Psychology & Philosophy" id="wind-resource">
-        <div class="card-main">
-          <p class="card-tag">Psychology & Philosophy</p>
-          <p class="card-title">Wind Resource Assessment — Samar Site</p>
-          <p class="card-desc">Pre-feasibility wind resource assessment for a candidate site in Eastern Samar using ERA5 reanalysis data and on-site met mast measurements. Includes Weibull parameter fitting, wind shear extrapolation, and energy yield estimation with WAsP.</p>
-          <div class="card-stack">
-            <span class="stack-tag">WAsP</span>
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">ERA5</span>
-            <span class="stack-tag">Excel</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Completed</span>
-          <a href="#" class="card-link">Details →</a>
-        </div>
-      </div>
 
       <div class="project-card" data-category="Psychology & Philosophy" id="how-to-build-life">
         <div class="card-main">
@@ -207,17 +78,6 @@
     </footer>
   </div>
 
-  <script>
-    function filter(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.project-card').forEach(card => {
-        const match = category === 'all' || card.dataset.category === category;
-        card.dataset.hidden = match ? 'false' : 'true';
-        card.style.display = match ? 'grid' : 'none';
-      });
-    }
-  </script>
 
 </body>
 </html>

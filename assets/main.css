@@ -145,6 +145,8 @@ nav {
 	padding-block: 1.1rem;
 	border-bottom: 1px solid var(--border);
 	transition: padding-left 0.15s;
+	text-decoration: none;
+	color: inherit;
 }
 .project-item:last-child { border-bottom: none; }
 .project-item:hover { padding-left: 0.4rem; }
