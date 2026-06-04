@@ -29,139 +29,50 @@
         Back
       </a>
       <h1>Projects</h1>
-      <p>Technical work in power systems, renewable energy, and software.</p>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" onclick="filter('all', this)">All</button>
-        <button class="filter-btn" onclick="filter('Power Systems', this)">Power Systems</button>
-        <button class="filter-btn" onclick="filter('Renewable Energy', this)">Renewable Energy</button>
-        <button class="filter-btn" onclick="filter('AI & Software', this)">AI & Software</button>
-      </div>
+      <p>Technical work in power systems and software.</p>
     </div>
   </div>
 
   <div class="wrap">
     <div class="project-grid" id="project-grid">
 
-      <div class="project-card" data-category="Power Systems" id="visayas-grid">
+      <div class="project-card" id="powergrid">
         <div class="card-main">
           <p class="card-tag">Power Systems</p>
-          <p class="card-title">Visayas Grid N-1 Contingency Model</p>
-          <p class="card-desc">A Python-based simulation of the Philippine Visayas grid using pandapower. The model covers N-1 contingency analysis for transmission lines and generating units, voltage stability assessment, and the impact of increased renewable penetration on grid reliability. Benchmarked against NGCP published data.</p>
+          <p class="card-title">Philippine Power Grid Visualization</p>
+          <p class="card-desc">A public web app that visualizes the Philippine power grid — the Visayas transmission backbone (69 / 138 / 230 kV) plus per-province distribution — with a pandapower load-flow model running underneath. Real NGCP topology isn't public, so the build combines OSM, a hand-curated dataset of NGCP substations, and flagged synthetic infill. Phase 1 (data foundation) is done: 2,960 buses and 2,967 lines, with the Visayas peak load landing within 4% of published figures.</p>
           <div class="card-stack">
             <span class="stack-tag">Python</span>
             <span class="stack-tag">pandapower</span>
-            <span class="stack-tag">NumPy</span>
-            <span class="stack-tag">Matplotlib</span>
+            <span class="stack-tag">PostGIS</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">OSMnx</span>
           </div>
         </div>
         <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Active</span>
-          <a href="#" class="card-link">GitHub →</a>
+          <span class="card-status"><span class="status-dot live"></span> In progress</span>
+          <a href="https://github.com/julius-darang/powergrid" class="card-link">GitHub →</a>
         </div>
       </div>
 
-      <div class="project-card" data-category="Renewable Energy" id="pvsyst">
-        <div class="card-main">
-          <p class="card-tag">Renewable Energy</p>
-          <p class="card-title">PVsyst Solar Yield Studies</p>
-          <p class="card-desc">Bankable solar energy yield assessments for utility-scale projects across the Philippines. Covers detailed near and far shading analysis, soiling and IAM losses, degradation modelling, and P50/P90 yield estimates. Reports are structured for lender and investor review.</p>
-          <div class="card-stack">
-            <span class="stack-tag">PVsyst</span>
-            <span class="stack-tag">Meteonorm</span>
-            <span class="stack-tag">Excel</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Ongoing</span>
-          <a href="#" class="card-link">Case Study →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Power Systems" id="etap-arc-flash">
+      <div class="project-card" id="visayasgrid">
         <div class="card-main">
           <p class="card-tag">Power Systems</p>
-          <p class="card-title">Arc Flash Hazard Analysis — Industrial Facility</p>
-          <p class="card-desc">Full arc flash study for a 69kV/13.8kV industrial substation using ETAP. Includes short circuit analysis, protective device coordination, incident energy calculations per IEEE 1584-2018, and arc flash labelling recommendations.</p>
-          <div class="card-stack">
-            <span class="stack-tag">ETAP</span>
-            <span class="stack-tag">IEEE 1584</span>
-            <span class="stack-tag">AutoCAD</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Completed</span>
-          <a href="#" class="card-link">View Report →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="AI & Software" id="automation">
-        <div class="card-main">
-          <p class="card-tag">AI & Software</p>
-          <p class="card-title">Content Automation Pipeline</p>
-          <p class="card-desc">An n8n workflow connected to the Anthropic API that takes raw notes from Obsidian and generates drafts for Substack essays, LinkedIn carousels, and Threads posts. Includes a review step and brand-voice prompt system to keep the output consistent with my writing style.</p>
-          <div class="card-stack">
-            <span class="stack-tag">n8n</span>
-            <span class="stack-tag">Anthropic API</span>
-            <span class="stack-tag">Obsidian</span>
-            <span class="stack-tag">Substack API</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Active</span>
-          <a href="#" class="card-link">Read Post →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="AI & Software" id="power-flow">
-        <div class="card-main">
-          <p class="card-tag">AI & Software</p>
-          <p class="card-title">Power Flow Web Interface</p>
-          <p class="card-desc">A lightweight Flask application that wraps pandapower's load flow solver behind a REST API and serves a minimal browser-based frontend. Designed for quick studies without requiring a full desktop simulation environment. Supports Newton-Raphson and DC approximation methods.</p>
+          <p class="card-title">Visayas Grid — Live Prototype</p>
+          <p class="card-desc">A lightweight, Vercel-only prototype that visualizes and models the Visayas transmission grid (69 / 138 / 230 kV plus the 350 kV HVDC link) from real, publicly available NGCP data. Data is precomputed into static JSON and served from the CDN — no backend or database. A Leaflet map encodes voltage and line loading by color with click-to-inspect bus and line panels, and a pandapower load-flow snapshot runs behind a topology-validation gate.</p>
           <div class="card-stack">
             <span class="stack-tag">Python</span>
-            <span class="stack-tag">Flask</span>
             <span class="stack-tag">pandapower</span>
-            <span class="stack-tag">Vanilla JS</span>
+            <span class="stack-tag">Leaflet</span>
+            <span class="stack-tag">JavaScript</span>
+            <span class="stack-tag">Vercel</span>
           </div>
         </div>
         <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Active</span>
-          <a href="#" class="card-link">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Power Systems" id="digsilent-model">
-        <div class="card-main">
-          <p class="card-tag">Power Systems</p>
-          <p class="card-title">DIgSILENT PowerFactory Grid Model</p>
-          <p class="card-desc">Steady-state and dynamic simulation model of a 230kV transmission network in DIgSILENT PowerFactory. Includes RMS simulation for fault analysis, governor and AVR modelling, and small-signal stability study using eigenvalue analysis.</p>
-          <div class="card-stack">
-            <span class="stack-tag">DIgSILENT PowerFactory</span>
-            <span class="stack-tag">DPL Script</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Completed</span>
-          <a href="#" class="card-link">Details →</a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Renewable Energy" id="wind-resource">
-        <div class="card-main">
-          <p class="card-tag">Renewable Energy</p>
-          <p class="card-title">Wind Resource Assessment — Samar Site</p>
-          <p class="card-desc">Pre-feasibility wind resource assessment for a candidate site in Eastern Samar using ERA5 reanalysis data and on-site met mast measurements. Includes Weibull parameter fitting, wind shear extrapolation, and energy yield estimation with WAsP.</p>
-          <div class="card-stack">
-            <span class="stack-tag">WAsP</span>
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">ERA5</span>
-            <span class="stack-tag">Excel</span>
-          </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot"></span> Completed</span>
-          <a href="#" class="card-link">Details →</a>
+          <span class="card-status"><span class="status-dot live"></span> Live</span>
+          <a href="visayasgrid.html" class="card-link">Case study →</a>
+          <a href="https://visayasgrid.vercel.app" class="card-link">Live demo →</a>
+          <a href="https://github.com/julius-darang/visayasgrid" class="card-link">GitHub →</a>
         </div>
       </div>
 
@@ -175,17 +86,6 @@
     </footer>
   </div>
 
-  <script>
-    function filter(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.project-card').forEach(card => {
-        const match = category === 'all' || card.dataset.category === category;
-        card.dataset.hidden = match ? 'false' : 'true';
-        card.style.display = match ? 'grid' : 'none';
-      });
-    }
-  </script>
 
 </body>
 </html>

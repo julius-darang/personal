@@ -145,6 +145,8 @@ nav {
 	padding-block: 1.1rem;
 	border-bottom: 1px solid var(--border);
 	transition: padding-left 0.15s;
+	text-decoration: none;
+	color: inherit;
 }
 .project-item:last-child { border-bottom: none; }
 .project-item:hover { padding-left: 0.4rem; }
@@ -631,7 +633,38 @@ footer a:hover { color: var(--text); }
 .filter-btn:hover { color: var(--text); }
 .filter-btn.active { color: var(--bright); border-bottom-color: var(--accent); }
 
+/* ── CASE STUDY ── */
+.cs-status {
+	font-size: 0.72rem; color: var(--dim);
+	display: inline-flex; align-items: center; gap: 0.35rem;
+	margin-bottom: 1rem;
+}
+.cs-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.4rem; }
+.cs-links a {
+	font-size: 0.8rem; color: var(--accent);
+	display: inline-flex; align-items: center; gap: 0.3rem;
+	transition: opacity 0.15s;
+}
+.cs-links a:hover { opacity: 0.7; }
 
+.cs-figure {
+	margin-block: 2.25rem;
+	border: 1px solid var(--border);
+	overflow: hidden;
+}
+.cs-figure img { display: block; width: 100%; height: auto; }
+.cs-figure figcaption {
+	font-size: 0.73rem; color: var(--dim);
+	padding: 0.6rem 0.85rem;
+	border-top: 1px solid var(--border);
+	background: var(--bg-1);
+}
 
-
+.cs-facts {
+	display: flex; flex-wrap: wrap; gap: 0.55rem 1.5rem;
+	padding-block: 1.5rem;
+	border-bottom: 1px solid var(--border);
+}
+.cs-fact { font-size: 0.78rem; color: var(--dim); white-space: nowrap; }
+.cs-fact strong { color: var(--text); font-weight: 500; }
 
