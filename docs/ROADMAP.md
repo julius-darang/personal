@@ -25,8 +25,9 @@ presentation**, not more building. Avoid spreading thin across half-built projec
 ## Projects
 
 ### Tier 1 — flagship (deepen now)
-- [ ] **visayasgrid** — strongest asset: live, deployed, domain + software. Give it
-      a full **case-study page** (not just a card). Tell the story:
+- [x] **visayasgrid** — strongest asset: live, deployed, domain + software. Has a
+      concise **case-study page** at `pages/visayasgrid.html` (2026-06-04). Tells
+      the story:
       - The problem: NGCP topology isn't public.
       - The judgment call: killed an 11-week v2 architecture, shipped in ~2 weeks.
       - The engineering: topology-validation gate before load flow; static JSON +

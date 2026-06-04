@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visayas Grid — Julius Darang</title>
+  <meta name="description" content="An interactive map and pandapower load-flow model of the Philippine Visayas transmission grid, built as a deliberately lightweight, backend-free prototype." />
+  <meta name="author" content="Julius Darang" />
+  <link rel="canonical" href="https://juliusdarang.com/pages/visayasgrid.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Visayas Grid — Case Study" />
+  <meta property="og:description" content="An interactive map and load-flow model of the Philippine Visayas transmission grid — computed offline, served as static files, no backend." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://juliusdarang.com/pages/visayasgrid.html" />
+  <meta property="og:image" content="https://juliusdarang.com/assets/visayasgrid.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/main.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="nav-logo">Julius Darang</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#projects" class="active">Projects</a></li>
+        <li><a href="../index.html#writing">Writing</a></li>
+        <li><a href="../index.html#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="wrap">
+      <a href="../index.html#projects" class="back-link">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 6H2.5M5.5 3L2.5 6l3 3"/></svg>
+        Back to projects
+      </a>
+      <span class="cs-status"><span class="status-dot live"></span> Live</span>
+      <h1>Visayas Grid</h1>
+      <p>An interactive map and pandapower load-flow model of the Philippine Visayas transmission grid — built as a deliberately lightweight, backend-free prototype.</p>
+      <div class="cs-links">
+        <a href="https://visayasgrid.vercel.app">Live demo →</a>
+        <a href="https://github.com/julius-darang/visayasgrid">GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <figure class="cs-figure">
+      <img src="../assets/visayasgrid.png" alt="The Visayas Grid web app: a dark map of the Visayas islands with transmission buses and lines color-coded by voltage level, alongside a filter sidebar." loading="lazy" />
+      <figcaption>The live app — buses and lines color-coded by nominal voltage and by load-flow loading, with island and voltage filters.</figcaption>
+    </figure>
+
+    <div class="cs-facts">
+      <span class="cs-fact"><strong>54</strong> buses</span>
+      <span class="cs-fact"><strong>60</strong> lines</span>
+      <span class="cs-fact"><strong>115</strong> generator units</span>
+      <span class="cs-fact"><strong>AC</strong> load flow</span>
+      <span class="cs-fact"><strong>No</strong> backend</span>
+      <span class="cs-fact">Deployed on <strong>Vercel</strong></span>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p>The Visayas is an island grid — generation and load spread across Cebu, Negros, Panay, Leyte, Samar, Bohol and more, stitched together by submarine cables and a single HVDC link to Luzon. NGCP's actual network data isn't published in a form you can model, and the "proper" way to build a tool like this — my earlier v2 design with PostGIS, a FastAPI backend, and Docker on a cloud VM — was 10–11 weeks of infrastructure before the first useful pixel. I wanted a working, public, <em>modelled</em> map in a fraction of that.</p>
+
+      <h2>The approach</h2>
+      <p>So I inverted the architecture: do all the heavy computation offline, and ship nothing but static files. A Python pipeline cleans an NGCP-coded dataset down to the Visayas (54 buses, 60 lines, 115 generator units), runs a pandapower AC load flow, and writes the results to GeoJSON. A React + Leaflet frontend reads those files directly. There is <strong>no backend at runtime</strong> — Vercel's CDN serves pre-baked JSON, which keeps the whole thing fast, free, and almost nothing to operate.</p>
+
+      <h2>What it does</h2>
+      <ul>
+        <li>Renders the transmission network on a dark map, color-coded by nominal voltage (350 / 230 / 138 / 69 kV) and by line loading from the load-flow result</li>
+        <li>Click any bus or line to inspect its modelled values</li>
+        <li>Filter by island and by voltage level</li>
+        <li>Summarises demand against generation for the current view</li>
+        <li>A provenance footer and "About" panel state exactly what is measured versus estimated</li>
+      </ul>
+
+      <h2>The result</h2>
+      <p>It's live, unit-tested with Vitest, and — importantly — honest about its data. Submarine cables use IEC 60840 XLPE parameters instead of guesses; loads that NGCP doesn't expose are gap-filled from clearly flagged estimates; and every modeling constant lives in one file with a source citation. The prototype is built so fuller real data can be swapped in without touching the frontend. The heavier, full-stack version of this idea lives in its sibling project, <a href="https://github.com/julius-darang/powergrid">powergrid</a>.</p>
+
+      <h2>Stack</h2>
+      <div class="card-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">pandapower</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">react-leaflet</span>
+        <span class="stack-tag">Vite</span>
+        <span class="stack-tag">Tailwind</span>
+        <span class="stack-tag">Vercel</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <footer>
+      <span>Julius Darang — REE · Philippines</span>
+      <a href="mailto:julius.darang@gmail.com">julius.darang@gmail.com</a>
+    </footer>
+  </div>
+
+</body>
+</html>
