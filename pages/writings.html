@@ -7,13 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
   <link rel="stylesheet" href="../assets/main.css" />
 </head>
 <body>
 
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
   <nav>
     <div class="wrap nav-inner">
       <a href="../index.html" class="nav-logo">Julius Darang</a>
+      <label for="nav-toggle" class="nav-hamburger">
+        <span></span><span></span><span></span>
+      </label>
       <ul class="nav-links">
         <li><a href="../index.html#projects">Projects</a></li>
         <li><a href="../index.html#writing">Writing</a></li>
@@ -29,7 +34,7 @@
         Back
       </a>
       <h1>Writings</h1>
-      <p>Articles and essays on engineering, technology, and Psychology & Philosophy.</p>
+      <p>Articles and essays on engineering, technology, and philosophy.</p>
     </div>
   </div>
 
@@ -39,7 +44,10 @@
       <div class="project-card" data-category="Engineering & AI" id="grid-model-ai">
         <div class="card-main">
           <p class="card-tag">Engineering & AI</p>
-          <p class="card-title">I built a live model of the Philippine grid. The code was the easy part.</p>
+          <div class="card-title-row">
+            <p class="card-title">I built a live model of the Philippine grid. The code was the easy part.</p>
+            <a href="../blogs/modelling-the-philippine-grid.html" class="card-proceed">Read Post →</a>
+          </div>
           <p class="card-desc">Most of the code for my Visayas grid model was written by AI. Making it physically correct came down to domain knowledge no tool could supply — the slack bus, the mixed-voltage transformers, the plausible-but-wrong answers.</p>
           <div class="card-stack">
             <span class="stack-tag">Power Systems</span>
@@ -47,41 +55,35 @@
             <span class="stack-tag">pandapower</span>
           </div>
         </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Live</span>
-          <a href="../blogs/modelling-the-philippine-grid.html" class="card-link">Read Post →</a>
-        </div>
       </div>
 
-      <div class="project-card" data-category="Psychology & Philosophy" id="how-to-build-life">
+      <div class="project-card" data-category="Philosophy" id="how-to-build-life">
         <div class="card-main">
-          <p class="card-tag">Psychology & Philosophy</p>
-          <p class="card-title">How to Build the Life You Actually Want</p>
+          <p class="card-tag">Philosophy</p>
+          <div class="card-title-row">
+            <p class="card-title">How to Build the Life You Actually Want</p>
+            <a href="../blogs/how%20to%20build%20the%20life%20you%20want.html" class="card-proceed">Read Post →</a>
+          </div>
           <p class="card-desc">An essay on identifying authentic goals, subtracting borrowed expectations, and aligning daily life with what genuinely matters.</p>
           <div class="card-stack">
             <span class="stack-tag">Essay</span>
           </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Live</span>
-          <a href="../blogs/how%20to%20build%20the%20life%20you%20want.html" class="card-link">Read Post →</a>
         </div>
       </div>
 
       <div class="project-card" data-category="AI & Software" id="create-website">
         <div class="card-main">
           <p class="card-tag">AI & Software</p>
-          <p class="card-title">How I Created and Deployed a Website From Scratch</p>
+          <div class="card-title-row">
+            <p class="card-title">How I Created and Deployed a Website From Scratch</p>
+            <a href="../blogs/how%20to%20create%20a%20website.html" class="card-proceed">Read Post →</a>
+          </div>
           <p class="card-desc">Step-by-step guide to generating, improving, and deploying a personal website using AI and GitHub Pages — zero cost required.</p>
           <div class="card-stack">
             <span class="stack-tag">Tutorial</span>
             <span class="stack-tag">GitHub Pages</span>
             <span class="stack-tag">HTML</span>
           </div>
-        </div>
-        <div class="card-side">
-          <span class="card-status"><span class="status-dot live"></span> Live</span>
-          <a href="../blogs/how%20to%20create%20a%20website.html" class="card-link">Read Post →</a>
         </div>
       </div>
 

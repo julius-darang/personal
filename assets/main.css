@@ -324,9 +324,30 @@ footer span, footer a {
 }
 footer a:hover { color: var(--text); }
 
+/* ── NAV TOGGLE (hamburger) ── */
+.nav-toggle { display: none; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 2px 0; }
+.nav-hamburger span { display: block; width: 18px; height: 2px; background: var(--dim); border-radius: 1px; transition: 0.2s; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 560px) {
+	.nav-hamburger { display: flex; }
 	.nav-links { display: none; }
+	.nav-toggle:checked ~ nav .nav-links {
+		display: flex;
+		position: absolute;
+		top: 100%; left: 0; right: 0;
+		flex-direction: column;
+		gap: 0;
+		list-style: none;
+		background: rgba(13,13,15,0.95);
+		backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--border);
+		padding: 0.5rem var(--pad);
+	}
+	.nav-links li { padding-block: 0.6rem; border-bottom: 1px solid var(--border); }
+	.nav-links li:last-child { border-bottom: none; }
+	.nav-links a { font-size: 0.9rem; display: block; }
 	.newsletter-inner { grid-template-columns: 1fr; gap: 1.25rem; }
 	.about-inner { grid-template-columns: 1fr; }
 	.about-avatar { width: 72px; aspect-ratio: 1; font-size: 1.5rem; }
@@ -390,7 +411,6 @@ footer a:hover { color: var(--text); }
 	cursor: pointer;
 }
 .project-card:last-child { border-bottom: none; }
-.project-card:hover { padding-left: 0.4rem; }
 .project-card[data-hidden="true"] { display: none; }
 
 .card-main { min-width: 0; }
@@ -568,6 +588,18 @@ footer a:hover { color: var(--text); }
 	border: 1px solid var(--border); padding: 0.15rem 0.5rem;
 }
 
+.card-title-row {
+	display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+}
+.card-title { transition: transform 0.2s; display: inline; }
+.project-card:hover .card-title { transform: translateX(3px); }
+
+.card-proceed {
+	font-size: 0.78rem; color: var(--accent); white-space: nowrap;
+	transition: transform 0.2s, opacity 0.2s; display: inline-block;
+}
+.card-proceed:hover { opacity: 0.7; transform: translateX(3px); }
+
 .card-side {
 	display: flex; flex-direction: column;
 	align-items: flex-end; gap: 0.5rem;
@@ -595,43 +627,6 @@ footer a:hover { color: var(--text); }
 	.project-card { grid-template-columns: 1fr; }
 	.card-side { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
 }
-
-/* --- Extracted CSS from pages/writings.html --- */
-
-/* PAGE HEADER */
-.page-header {
-	padding-top: 3.5rem;
-	padding-bottom: 2.5rem;
-	border-bottom: 1px solid var(--border);
-}
-.back-link {
-	display: inline-flex; align-items: center; gap: 0.35rem;
-	font-size: 0.78rem; color: var(--dim); margin-bottom: 1.5rem;
-	transition: color 0.15s;
-}
-.back-link:hover { color: var(--text); }
-.page-header h1 {
-	font-size: clamp(1.4rem, 3.5vw, 1.9rem);
-	font-weight: 500; color: var(--bright);
-	letter-spacing: -0.01em; margin-bottom: 0.4rem;
-}
-.page-header p { font-size: 0.875rem; color: var(--dim); max-width: 48ch; }
-
-/* FILTER TABS */
-.filter-bar {
-	display: flex; gap: 0; border-bottom: 1px solid var(--border);
-	padding-top: 2rem;
-}
-.filter-btn {
-	font-size: 0.78rem; font-family: var(--sans);
-	color: var(--dim); background: none; border: none;
-	border-bottom: 2px solid transparent;
-	padding: 0.6rem 1rem 0.5rem; cursor: pointer;
-	transition: color 0.15s, border-color 0.15s;
-	margin-bottom: -1px;
-}
-.filter-btn:hover { color: var(--text); }
-.filter-btn.active { color: var(--bright); border-bottom-color: var(--accent); }
 
 /* ── CASE STUDY ── */
 .cs-status {
