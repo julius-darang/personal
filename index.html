@@ -49,24 +49,34 @@
 </head>
 <body>
 
+<!--#set
+  ROOT=
+  NAV_PROJECTS=#projects
+  NAV_WRITING=#writing
+  ACTIVE_PROJECTS=
+  ACTIVE_WRITING=
+-->
+<!--#nav-->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle">
-  <nav>
+  <nav aria-label="Main navigation">
     <div class="wrap nav-inner">
-      <span class="nav-logo">Julius Darang</span>
-      <label for="nav-toggle" class="nav-hamburger">
+      <a href="index.html" class="nav-logo">Julius Darang</a>
+      <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
       </label>
       <ul class="nav-links">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#writing">Writing</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#projects" >Projects</a></li>
+        <li><a href="#writing" >Writing</a></li>
+        <li><a href="index.html#about">About</a></li>
       </ul>
     </div>
   </nav>
+<!--#/nav-->
 
-  <section class="hero">
+  <section class="hero" id="main-content">
     <div class="wrap">
-      <p class="hero-name">Power-Systems Engineer · AI-Native Builder</p>
+      <p class="hero-name">Power System Engineer · Agentic AI Systems</p>
       <h1>Think in systems.<br /><strong>Build what matters.</strong></h1>
       <p class="hero-sub">I model power grids and build the software — increasingly with AI agents — that makes them legible. I also write about systems, AI, and the examined life.</p>
       <a href="#newsletter" class="hero-cta">
@@ -90,7 +100,7 @@
           </div>
           <p class="project-tag">Power Systems</p>
         </a>
-        <a href="pages/visayasgrid.html" class="project-item">
+        <a href="proj/visayasgrid.html" class="project-item">
           <div>
             <p class="project-name">Visayas Grid — Live Prototype</p>
             <p class="project-desc">Lightweight Vercel-only prototype modeling the Visayas transmission grid from real public NGCP data. Leaflet map with voltage/loading color encoding, click-to-inspect, and a pandapower load-flow snapshot.</p>
@@ -112,11 +122,11 @@
           <p class="post-title">I built a live model of the Philippine grid. The code was the easy part.</p>
           <p class="post-meta">Jun 2026</p>
         </a>
-        <a href="blogs/how%20to%20build%20the%20life%20you%20want.html" class="post-item">
+        <a href="blogs/how-to-build-the-life-you-want.html" class="post-item">
           <p class="post-title">How to Build the Life You Actually Want</p>
           <p class="post-meta">Apr 2026</p>
         </a>
-        <a href="blogs/how%20to%20create%20a%20website.html" class="post-item">
+        <a href="blogs/how-to-create-a-website.html" class="post-item">
           <p class="post-title">How I Created and Deployed a Website From Scratch</p>
           <p class="post-meta">Apr 2026</p>
         </a>
@@ -135,9 +145,10 @@
           <h2>Think deeper.<br />Build smarter.</h2>
           <p>Weekly essays on power systems, AI tools, and building a meaningful technical career.</p>
         </div>
-        <a href="https://juliusdarang.substack.com/subscribe" class="newsletter-form">
-          <span>Subscribe</span>
-        </a>
+        <form class="newsletter-form" action="https://juliusdarang.substack.com/subscribe" method="post">
+          <input type="email" name="email" placeholder="Your email address" required />
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
   </section>
@@ -147,7 +158,10 @@
       <div class="about-inner">
         <div class="about-left">
           <div class="about-avatar">
-            <img src="assets/1000021423.png" alt="Julius Darang" loading="lazy" />
+            <picture>
+              <source srcset="assets/profile.webp" type="image/webp" />
+              <img src="assets/1000021423.png" alt="Julius Darang" loading="lazy" />
+            </picture>
           </div>
           <div class="about-socials">
             <a href="https://juliusdarang.substack.com/">Substack</a>
@@ -174,12 +188,14 @@
     </div>
   </section>
 
+<!--#footer-->
   <div class="wrap">
     <footer>
       <span>Julius Darang — REE · Philippines</span>
       <a href="mailto:julius.darang@gmail.com">julius.darang@gmail.com</a>
     </footer>
   </div>
+<!--#/footer-->
 
 </body>
 </html>

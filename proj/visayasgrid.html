@@ -23,28 +23,38 @@
 </head>
 <body>
 
+<!--#set
+  ROOT=../
+  NAV_PROJECTS=../pages/projects.html
+  NAV_WRITING=../pages/writings.html
+  ACTIVE_PROJECTS=
+  ACTIVE_WRITING=
+-->
+<!--#nav-->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle">
-  <nav>
+  <nav aria-label="Main navigation">
     <div class="wrap nav-inner">
       <a href="../index.html" class="nav-logo">Julius Darang</a>
-      <label for="nav-toggle" class="nav-hamburger">
+      <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
       </label>
       <ul class="nav-links">
-        <li><a href="../index.html#projects" class="active">Projects</a></li>
-        <li><a href="../index.html#writing">Writing</a></li>
+        <li><a href="../pages/projects.html" >Projects</a></li>
+        <li><a href="../pages/writings.html" >Writing</a></li>
         <li><a href="../index.html#about">About</a></li>
       </ul>
     </div>
   </nav>
+<!--#/nav-->
 
-  <div class="page-header">
+  <div class="page-header" id="main-content">
     <div class="wrap">
       <a href="../index.html#projects" class="back-link">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 6H2.5M5.5 3L2.5 6l3 3"/></svg>
         Back to projects
       </a>
-      <span class="cs-status"><span class="status-dot live"></span> Live</span>
+      <!-- <span class="cs-status"><span class="status-dot live"></span> Live</span> -->
       <h1>Visayas Grid</h1>
       <p>An interactive map and pandapower load-flow model of the Philippine Visayas transmission grid — built as a deliberately lightweight, backend-free prototype.</p>
       <div class="cs-links">
@@ -103,12 +113,14 @@
     </div>
   </div>
 
+<!--#footer-->
   <div class="wrap">
     <footer>
       <span>Julius Darang — REE · Philippines</span>
       <a href="mailto:julius.darang@gmail.com">julius.darang@gmail.com</a>
     </footer>
   </div>
+<!--#/footer-->
 
 </body>
 </html>

@@ -12,22 +12,32 @@
 </head>
 <body>
 
+<!--#set
+  ROOT=../
+  NAV_PROJECTS=../pages/projects.html
+  NAV_WRITING=../pages/writings.html
+  ACTIVE_PROJECTS=
+  ACTIVE_WRITING=class="active"
+-->
+<!--#nav-->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle">
-  <nav>
+  <nav aria-label="Main navigation">
     <div class="wrap nav-inner">
       <a href="../index.html" class="nav-logo">Julius Darang</a>
-      <label for="nav-toggle" class="nav-hamburger">
+      <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
       </label>
       <ul class="nav-links">
-        <li><a href="../index.html#projects">Projects</a></li>
-        <li><a href="../index.html#writing">Writing</a></li>
+        <li><a href="../pages/projects.html" >Projects</a></li>
+        <li><a href="../pages/writings.html" class="active">Writing</a></li>
         <li><a href="../index.html#about">About</a></li>
       </ul>
     </div>
   </nav>
+<!--#/nav-->
 
-  <div class="page-header">
+  <div class="page-header" id="main-content">
     <div class="wrap">
       <a href="../index.html" class="back-link">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 6H2.5M5.5 3L2.5 6l3 3"/></svg>
@@ -62,7 +72,7 @@
           <p class="card-tag">Philosophy</p>
           <div class="card-title-row">
             <p class="card-title">How to Build the Life You Actually Want</p>
-            <a href="../blogs/how%20to%20build%20the%20life%20you%20want.html" class="card-proceed">Read Post →</a>
+            <a href="../blogs/how-to-build-the-life-you-want.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">An essay on identifying authentic goals, subtracting borrowed expectations, and aligning daily life with what genuinely matters.</p>
           <div class="card-stack">
@@ -76,7 +86,7 @@
           <p class="card-tag">AI & Software</p>
           <div class="card-title-row">
             <p class="card-title">How I Created and Deployed a Website From Scratch</p>
-            <a href="../blogs/how%20to%20create%20a%20website.html" class="card-proceed">Read Post →</a>
+            <a href="../blogs/how-to-create-a-website.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">Step-by-step guide to generating, improving, and deploying a personal website using AI and GitHub Pages — zero cost required.</p>
           <div class="card-stack">
@@ -105,12 +115,14 @@
     </div>
   </div>
 
+<!--#footer-->
   <div class="wrap">
     <footer>
       <span>Julius Darang — REE · Philippines</span>
       <a href="mailto:julius.darang@gmail.com">julius.darang@gmail.com</a>
     </footer>
   </div>
+<!--#/footer-->
 
 
 </body>
