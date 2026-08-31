@@ -21,6 +21,7 @@ Personal website of Julius Darang — built with vanilla HTML/CSS, zero JavaScri
 ├── pages/
 │   ├── projects.html       Project portfolio
 │   ├── writings.html       Writing index with filterable cards
+├── proj/
 │   └── visayasgrid.html    Case study
 ├── blogs/
 │   ├── modelling-the-philippine-grid.html

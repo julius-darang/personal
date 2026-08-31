@@ -66,7 +66,7 @@
   <article class="article-body">
     <div class="wrap">
 
-      <p><a href="https://visayasgrid.vercel.app">visayasgrid</a> is a live, public map of the Visayas transmission grid — the islands south of Luzon that NGCP runs at 69, 138, and 230 kV, tied to the national grid by a 350 kV HVDC link. You can open it, filter by island or voltage level, click any substation, and read a power-flow result for it. There's no server behind it: a Python pipeline computes everything offline, writes static GeoJSON, and a React and Leaflet frontend draws it. I covered how that architecture fits together in the <a href="../pages/visayasgrid.html">case study</a>. This post is about how it actually got built — and where AI carried me, versus where it couldn't.</p>
+      <p><a href="https://visayasgrid.vercel.app">visayasgrid</a> is a live, public map of the Visayas transmission grid — the islands south of Luzon that NGCP runs at 69, 138, and 230 kV, tied to the national grid by a 350 kV HVDC link. You can open it, filter by island or voltage level, click any substation, and read a power-flow result for it. There's no server behind it: a Python pipeline computes everything offline, writes static GeoJSON, and a React and Leaflet frontend draws it. I covered how that architecture fits together in the <a href="../proj/visayasgrid.html">case study</a>. This post is about how it actually got built — and where AI carried me, versus where it couldn't.</p>
 
       <h2>The code came fast</h2>
       <p>I'll be honest about the workflow, because the honesty is the point. I build with AI agents in small, reviewed steps: describe the change, let the agent write it, read every diff, run the tests, keep a short journal of what changed and why. Most of visayasgrid was built this way. The two-stage data pipeline that cleans NGCP-coded source data and runs the load flow, the React components for the map and the inspect panel, the unit tests, a refactor that pulled every modelling constant into one cited file — all of it came together far faster than if I had typed it myself.</p>
@@ -96,7 +96,7 @@
       <h2>Why this matters if you're an engineer</h2>
       <p>The common worry is that AI makes technical depth less valuable. My experience building this was the opposite. The faster it became to produce code, the more the bottleneck moved to the things code can't supply: knowing the domain, knowing what "correct" means, and being able to tell when a confident answer is wrong. If anything, AI raised the price of judgment.</p>
       <p>If you have real domain knowledge, this is the best moment in a long time to build with it. The tool will handle the parts that used to slow you down. Your job is the part it can't do — and that part is worth more now, not less.</p>
-      <p>The result is <a href="https://visayasgrid.vercel.app">live here</a>, the build is written up in the <a href="../pages/visayasgrid.html">case study</a>, and the code is <a href="https://github.com/julius-darang/visayasgrid">on GitHub</a>.</p>
+      <p>The result is <a href="https://visayasgrid.vercel.app">live here</a>, the build is written up in the <a href="../proj/visayasgrid.html">case study</a>, and the code is <a href="https://github.com/julius-darang/visayasgrid">on GitHub</a>.</p>
 
     </div>
   </article>

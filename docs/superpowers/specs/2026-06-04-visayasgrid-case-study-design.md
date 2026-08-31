@@ -11,7 +11,7 @@ international remote / AI roles that judge technical depth but also skim.
 
 ## File & linking
 
-- New page: `pages/visayasgrid.html`, reusing the existing nav, footer, and
+- New page: `proj/visayasgrid.html`, reusing the existing nav, footer, and
   `assets/main.css` design system.
 - `pages/projects.html`: visayasgrid card gets a **"Case study →"** link added,
   alongside the existing Live demo + GitHub links.
@@ -67,7 +67,7 @@ image reference and flag it for the user to supply.
 
 ## Success criteria
 
-- `pages/visayasgrid.html` renders with the site's existing styling.
+- `proj/visayasgrid.html` renders with the site's existing styling.
 - All links resolve (Live demo, GitHub, internal back link).
 - Project cards on `index.html` and `pages/projects.html` link to the case study.
 - Every factual claim matches the visayasgrid repo.
