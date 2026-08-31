@@ -23,9 +23,11 @@ jobs:
           echo "XML validation passed"
 
       - name: Validate HTML
-        uses: anishathalye/proof-html@v1
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
-          directory: .
+          root: .
+          blacklist: _partials template.html
+          format: text
 
       - name: Check broken links
         uses: lycheeverse/lychee-action@v2
