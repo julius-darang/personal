@@ -23,9 +23,11 @@ jobs:
           echo "XML validation passed"
 
       - name: Validate HTML
-        uses: w3c/html-validator-action@master
+        uses: cyb3r-jak/html5validator-action@v7
         with:
-          input: .
+          root: .
+          format: text
+          log_level: ERROR
 
       - name: Check broken links
         uses: lycheeverse/lychee-action@v2
