@@ -23,7 +23,7 @@ jobs:
           echo "XML validation passed"
 
       - name: Validate HTML
-        uses: Cyb3r-Jak/html5validator-action@v7
+        uses: cyb3r-jak/html5validator-action@v7
         with:
           root: .
           format: text
