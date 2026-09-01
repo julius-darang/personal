@@ -34,7 +34,6 @@ jobs:
         with:
           args: >
             --no-progress
-            --exclude-mail
             --exclude 'fonts\.(googleapis|gstatic)\.com'
             --exclude 'linkedin\.com'
             --exclude 'substack\.com'
