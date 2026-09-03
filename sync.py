@@ -28,6 +28,7 @@ HTML_FILES = [
     "proj/visayasgrid.html",
     "blogs/template.html",
     "blogs/modelling-the-philippine-grid.html",
+    "blogs/my-first-llm-subscription.html",
     "blogs/visayas-grid-engineering.html",
     "blogs/how-to-build-the-life-you-want.html",
     "blogs/how-to-create-a-website.html",
@@ -86,7 +87,7 @@ def sync():
 
         content = sync_section(content, "nav", nav)
         content = sync_section(content, "footer", footer)
-        if "head" in content:
+        if "<!--#head-->" in content:
             content = sync_section(content, "head", head)
 
         filepath.write_text(encoding="utf-8", data=content)

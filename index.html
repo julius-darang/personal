@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <script src="assets/theme.js"></script>
   <link rel="stylesheet" href="assets/main.css" />
   <meta property="og:image" content="https://juliusdarang.com/assets/1000021423.png" />
   
@@ -62,14 +63,25 @@
   <nav aria-label="Main navigation">
     <div class="wrap nav-inner">
       <a href="index.html" class="nav-logo">Julius Darang</a>
-      <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle navigation menu">
-        <span></span><span></span><span></span>
-      </label>
-      <ul class="nav-links">
-        <li><a href="#projects" >Projects</a></li>
-        <li><a href="#writing" >Writing</a></li>
-        <li><a href="index.html#about">About</a></li>
-      </ul>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="#projects" >Projects</a></li>
+          <li><a href="#writing" >Writing</a></li>
+          <li><a href="index.html#about">About</a></li>
+        </ul>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <circle cx="8" cy="8" r="2.75" />
+            <path d="M8 1.5v1.25M8 13.25v1.25M14.5 8h-1.25M2.75 8H1.5M12.6 3.4l-.9.9M4.3 11.7l-.9.9M12.6 12.6l-.9-.9M4.3 4.3l-.9-.9" />
+          </svg>
+          <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <path d="M13.2 10.7A5.5 5.5 0 0 1 5.3 2.8 5.5 5.5 0 1 0 13.2 10.7Z" />
+          </svg>
+        </button>
+        <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
     </div>
   </nav>
 <!--#/nav-->

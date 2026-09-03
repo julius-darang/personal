@@ -1,12 +1,12 @@
 # juliusdarang.com
 
-Personal website of Julius Darang — built with vanilla HTML/CSS, zero JavaScript, hosted on GitHub Pages.
+Personal website of Julius Darang — built with vanilla HTML/CSS and a small vanilla-JS theme toggle, hosted on GitHub Pages.
 
 ## Stack
 
-- Pure static HTML (no framework, no build step)
+- Pure static HTML (no framework)
 - Vanilla CSS with custom properties, single stylesheet (`assets/main.css`)
-- Zero JavaScript (CSS-only hamburger nav via checkbox hack)
+- Small vanilla-JS theme preference (`assets/theme.js`); CSS-only hamburger nav
 - Google Fonts: DM Sans
 - GitHub Pages deployment
 
@@ -16,6 +16,7 @@ Personal website of Julius Darang — built with vanilla HTML/CSS, zero JavaScri
 ├── index.html              Homepage
 ├── assets/
 │   ├── main.css            Single stylesheet
+│   ├── theme.js            Persistent dark/light theme toggle
 │   ├── favicon.svg         SVG favicon
 │   └── prof-img.JPG        Profile image
 ├── pages/
@@ -34,7 +35,8 @@ Personal website of Julius Darang — built with vanilla HTML/CSS, zero JavaScri
 
 ## Key Notes
 
-- All pages share the same nav component (manually synced — no templating)
+- All pages share the same nav component, synced with `python3 sync.py`
 - Mobile nav collapses into a hamburger at 560px breakpoint
+- The theme preference is stored locally in the browser; dark mode remains the default
 - Filter tabs on writings page are CSS-only (active class via static HTML)
-- The site is a deliberate zero-JS showcase
+- The site remains framework-free and intentionally lightweight.
