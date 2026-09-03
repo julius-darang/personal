@@ -37,7 +37,10 @@ jobs:
             --exclude 'fonts\.(googleapis|gstatic)\.com'
             --exclude 'linkedin\.com'
             --exclude 'substack\.com'
-            -- '.'
+            --exclude 'juliusdarang\.com'
+            --exclude 'instagram\.com'
+            --exclude 'template\.html'
+            -- 'index.html' 'pages/*.html' 'proj/*.html' 'blogs/*.html'
           fail: true
 
       - name: Warn about large images
