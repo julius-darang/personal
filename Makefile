@@ -14,6 +14,7 @@ import subprocess, sys
 fail = 0
 for f in ['index.html', 'pages/projects.html', 'pages/writings.html',
           'proj/visayasgrid.html', 'blogs/modelling-the-philippine-grid.html',
+          'blogs/how-i-built-the-visayas-grid.html',
           'blogs/visayas-grid-engineering.html', 'blogs/how-to-build-the-life-you-want.html',
           'blogs/how-to-create-a-website.html']:
     result = subprocess.run(['tidy', '-eq', f], capture_output=True, text=True)
