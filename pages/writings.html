@@ -84,6 +84,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
   <script src="../assets/theme.js"></script>
+  <script src="../assets/writings.js" defer></script>
   <link rel="stylesheet" href="../assets/main.css" />
 </head>
 <body>
@@ -131,14 +132,28 @@
         Back
       </a>
       <h1>Writings</h1>
-      <p>Articles and essays on engineering, technology, and philosophy.</p>
+      <p>Start with the Visayas Grid explainer. Then browse essays and tutorials on engineering, technology, and philosophy.</p>
+    </div>
+  </div>
+
+  <div class="wrap writing-toolbar">
+    <div class="writing-filter-head">
+      <p class="filter-label">Browse by topic</p>
+      <p class="filter-status" data-filter-status aria-live="polite">Showing 6 writings</p>
+    </div>
+    <div class="writing-filters" role="group" aria-label="Filter writings by topic">
+      <button type="button" class="writing-filter active" data-writing-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="writing-filter" data-writing-filter="power-systems" aria-pressed="false">Power systems</button>
+      <button type="button" class="writing-filter" data-writing-filter="ai-tools" aria-pressed="false">AI &amp; tools</button>
+      <button type="button" class="writing-filter" data-writing-filter="philosophy" aria-pressed="false">Philosophy</button>
+      <button type="button" class="writing-filter" data-writing-filter="web" aria-pressed="false">Web</button>
     </div>
   </div>
 
   <div class="wrap">
     <div class="project-grid" id="project-grid">
 
-      <div class="project-card" data-category="Power Systems &amp; Software" id="visayas-grid-explainer">
+      <div class="project-card" data-category="Power Systems &amp; Software" data-writing-card data-topics="power-systems software" id="visayas-grid-explainer">
         <div class="card-main">
           <p class="card-tag">Power Systems &amp; Software</p>
           <div class="card-title-row">
@@ -146,6 +161,7 @@
             <a href="../blogs/how-i-built-the-visayas-grid.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">A complete, plain-language look at the data, load-flow model, and deliberately simple architecture behind my interactive map of the Visayas transmission network.</p>
+          <p class="card-meta">Sep 2026 · 8 min read</p>
           <div class="card-stack">
             <span class="stack-tag">Power Systems</span>
             <span class="stack-tag">pandapower</span>
@@ -154,7 +170,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-category="AI & Tools" id="first-llm-sub">
+      <div class="project-card" data-category="AI & Tools" data-writing-card data-topics="ai-tools" id="first-llm-sub">
         <div class="card-main">
           <p class="card-tag">AI & Tools</p>
           <div class="card-title-row">
@@ -162,6 +178,7 @@
             <a href="../blogs/my-first-llm-subscription.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">My experience with my first LLM subscription, the importance of exhausting free resources first, and the value of experimenting with different coding agents.</p>
+          <p class="card-meta">Sep 2024 · 5 min read</p>
           <div class="card-stack">
             <span class="stack-tag">AI</span>
             <span class="stack-tag">LLM</span>
@@ -170,7 +187,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-category="Engineering & AI" id="grid-model-ai">
+      <div class="project-card" data-category="Engineering & AI" data-writing-card data-topics="power-systems ai-tools" id="grid-model-ai">
         <div class="card-main">
           <p class="card-tag">Engineering & AI</p>
           <div class="card-title-row">
@@ -178,6 +195,7 @@
             <a href="../blogs/modelling-the-philippine-grid.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">Most of the code for my Visayas grid model was written by AI. Making it physically correct came down to domain knowledge no tool could supply — the slack bus, the mixed-voltage transformers, the plausible-but-wrong answers.</p>
+          <p class="card-meta">Jun 2026 · 7 min read</p>
           <div class="card-stack">
             <span class="stack-tag">Power Systems</span>
             <span class="stack-tag">AI</span>
@@ -186,7 +204,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-category="Philosophy" id="how-to-build-life">
+      <div class="project-card" data-category="Philosophy" data-writing-card data-topics="philosophy" id="how-to-build-life">
         <div class="card-main">
           <p class="card-tag">Philosophy</p>
           <div class="card-title-row">
@@ -194,13 +212,14 @@
             <a href="../blogs/how-to-build-the-life-you-want.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">An essay on identifying authentic goals, subtracting borrowed expectations, and aligning daily life with what genuinely matters.</p>
+          <p class="card-meta">Apr 2026 · 3 min read</p>
           <div class="card-stack">
             <span class="stack-tag">Essay</span>
           </div>
         </div>
       </div>
 
-      <div class="project-card" data-category="AI & Software" id="create-website">
+      <div class="project-card" data-category="AI & Software" data-writing-card data-topics="web ai-tools" id="create-website">
         <div class="card-main">
           <p class="card-tag">AI & Software</p>
           <div class="card-title-row">
@@ -208,6 +227,7 @@
             <a href="../blogs/how-to-create-a-website.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">Step-by-step guide to generating, improving, and deploying a personal website using AI and GitHub Pages — zero cost required.</p>
+          <p class="card-meta">Apr 2026 · 3 min read</p>
           <div class="card-stack">
             <span class="stack-tag">Tutorial</span>
             <span class="stack-tag">GitHub Pages</span>
@@ -216,7 +236,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-category="Power Systems" id="visayas-grid">
+      <div class="project-card" data-category="Power Systems" data-writing-card data-topics="power-systems" id="visayas-grid">
         <div class="card-main">
           <p class="card-tag">Power Systems</p>
           <div class="card-title-row">
@@ -224,6 +244,7 @@
             <a href="../blogs/visayas-grid-engineering.html" class="card-proceed">Read Post →</a>
           </div>
           <p class="card-desc">An isolated island grid, aggressive renewable targets, and aging infrastructure — what makes the Visayas one of the most complex power systems in Southeast Asia.</p>
+          <p class="card-meta">Mar 2026 · 8 min read</p>
           <div class="card-stack">
             <span class="stack-tag">Power Systems</span>
             <span class="stack-tag">Engineering</span>
@@ -232,6 +253,7 @@
       </div>
 
     </div>
+    <p class="filter-empty" data-filter-empty hidden>No writings match this topic.</p>
   </div>
 
 <!--#footer-->

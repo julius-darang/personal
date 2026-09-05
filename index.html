@@ -129,6 +129,29 @@
     </div>
   </section>
 
+  <section class="section now-section" id="now">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I do</h2>
+        <span class="section-kicker">Now</span>
+      </div>
+      <div class="now-grid">
+        <div class="now-item">
+          <p class="now-label">Power systems</p>
+          <p>I work in operations and maintenance at a renewable-energy power plant while studying transmission-grid modeling.</p>
+        </div>
+        <div class="now-item">
+          <p class="now-label">AI-native software</p>
+          <p>I build small, inspectable tools with Python, pandapower, React, and AI coding agents.</p>
+        </div>
+        <div class="now-item">
+          <p class="now-label">Writing</p>
+          <p>I write for engineers and builders about systems, AI, and the choices behind useful work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="writing">
     <div class="wrap">
       <div class="section-head">
@@ -160,13 +183,17 @@
     <div class="wrap">
       <div class="newsletter-inner">
         <div>
-          <h2>Think deeper.<br />Build smarter.</h2>
-          <p>Weekly essays on power systems, AI tools, and building a meaningful technical career.</p>
+          <h2>Notes from the<br />intersection.</h2>
+          <p>Occasional essays on power systems, AI tools, and building useful things in public.</p>
         </div>
-        <form class="newsletter-form" action="https://juliusdarang.substack.com/subscribe" method="post">
-          <input type="email" name="email" placeholder="Your email address" required />
-          <button type="submit">Subscribe</button>
-        </form>
+        <div class="newsletter-form-wrap">
+          <form class="newsletter-form" action="https://juliusdarang.substack.com/subscribe" method="post" aria-label="Subscribe to Julius Darang's newsletter">
+            <label class="sr-only" for="newsletter-email">Email address</label>
+            <input id="newsletter-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+          <p class="newsletter-note">No fixed schedule. Unsubscribe anytime.</p>
+        </div>
       </div>
     </div>
   </section>
