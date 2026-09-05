@@ -24,59 +24,65 @@
   <meta name="twitter:image:alt" content="Visayas Grid interactive map showing transmission lines and substations." />
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Writings — Julius Darang",
-    "url": "https://juliusdarang.com/pages/writings.html",
-    "description": "Essays and tutorials on power systems, AI tools, software, and building a meaningful technical career.",
-    "author": {
-      "@type": "Person",
-      "name": "Julius Darang",
-      "url": "https://juliusdarang.com/"
-    },
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "How I Built an Interactive Model of the Visayas Power Grid",
-          "url": "https://juliusdarang.com/blogs/how-i-built-the-visayas-grid.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "I built a live model of the Philippine grid. The code was the easy part.",
-          "url": "https://juliusdarang.com/blogs/modelling-the-philippine-grid.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "My First LLM Subscription",
-          "url": "https://juliusdarang.com/blogs/my-first-llm-subscription.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "How to Build the Life You Actually Want",
-          "url": "https://juliusdarang.com/blogs/how-to-build-the-life-you-want.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "name": "How I Created and Deployed a Website From Scratch",
-          "url": "https://juliusdarang.com/blogs/how-to-create-a-website.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "name": "Why the Visayas Grid is the most interesting engineering problem in the Philippines",
-          "url": "https://juliusdarang.com/blogs/visayas-grid-engineering.html"
-        }
-      ]
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Writings — Julius Darang",
+  "url": "https://juliusdarang.com/pages/writings.html",
+  "description": "Essays and tutorials on power systems, AI tools, software, and building a meaningful technical career.",
+  "author": {
+    "@type": "Person",
+    "name": "Julius Darang",
+    "url": "https://juliusdarang.com/"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inside the Visayas Grid Model: A Power Systems Engineering Guide",
+        "url": "https://juliusdarang.com/blogs/visayas-grid-technical-guide.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "How I Built an Interactive Model of the Visayas Power Grid",
+        "url": "https://juliusdarang.com/blogs/how-i-built-the-visayas-grid.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "I built a live model of the Philippine grid. The code was the easy part.",
+        "url": "https://juliusdarang.com/blogs/modelling-the-philippine-grid.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "My First LLM Subscription",
+        "url": "https://juliusdarang.com/blogs/my-first-llm-subscription.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "How to Build the Life You Actually Want",
+        "url": "https://juliusdarang.com/blogs/how-to-build-the-life-you-want.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "How I Created and Deployed a Website From Scratch",
+        "url": "https://juliusdarang.com/blogs/how-to-create-a-website.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "Why the Visayas Grid is the most interesting engineering problem in the Philippines",
+        "url": "https://juliusdarang.com/blogs/visayas-grid-engineering.html"
+      }
+    ]
   }
+}
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -139,7 +145,7 @@
   <div class="wrap writing-toolbar">
     <div class="writing-filter-head">
       <p class="filter-label">Browse by topic</p>
-      <p class="filter-status" data-filter-status aria-live="polite">Showing 6 writings</p>
+      <p class="filter-status" data-filter-status aria-live="polite">Showing 7 writings</p>
     </div>
     <div class="writing-filters" role="group" aria-label="Filter writings by topic">
       <button type="button" class="writing-filter active" data-writing-filter="all" aria-pressed="true">All</button>
@@ -152,6 +158,21 @@
 
   <div class="wrap">
     <div class="project-grid" id="project-grid">
+
+      <div class="project-card" data-category="Power Systems" data-writing-card data-topics="power-systems" id="visayas-grid-technical-guide">
+        <div class="card-main">
+          <p class="card-tag">Power Systems</p>
+          <div class="card-title-row">
+            <p class="card-title">Inside the Visayas Grid Model: A Power Systems Engineering Guide</p>
+            <a href="../blogs/visayas-grid-technical-guide.html" class="card-proceed">Read Post →</a>
+          </div>
+          <p class="card-desc">The engineering reference: buses, lines, transformers, dispatch, AC/DC equations, scenario results, map legends, and data tables.</p>
+          <p class="card-meta">Sep 2026 · 24 min read</p>
+          <div class="card-stack"><span class="stack-tag">Load Flow</span><span class="stack-tag">pandapower</span><span class="stack-tag">Technical Guide</span></div>
+        </div>
+      </div>
+
+
 
       <div class="project-card" data-category="Power Systems &amp; Software" data-writing-card data-topics="power-systems software" id="visayas-grid-explainer">
         <div class="card-main">
