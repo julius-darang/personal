@@ -48,5 +48,13 @@
       <guid>https://juliusdarang.com/blogs/visayas-grid-engineering.html</guid>
     </item>
 
+    <item>
+      <title>My First LLM Subscription</title>
+      <link>https://juliusdarang.com/blogs/my-first-llm-subscription.html</link>
+      <description>What I learned from my first LLM subscription, experimenting with free models, and finding a coding-agent workflow before paying more.</description>
+      <pubDate>Sun, 01 Sep 2024 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/my-first-llm-subscription.html</guid>
+    </item>
+
   </channel>
 </rss>
