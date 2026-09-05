@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How I Built an Interactive Model of the Visayas Power Grid — Julius Darang</title>
+  <meta name="description" content="A plain-language look at how I turned public power-system data, engineering assumptions, and an offline load-flow model into an interactive map of the Visayas Grid." />
+  <meta name="author" content="Julius Darang" />
+  <link rel="canonical" href="https://juliusdarang.com/blogs/how-i-built-the-visayas-grid.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How I Built an Interactive Model of the Visayas Power Grid" />
+  <meta property="og:description" content="From public grid data to a solved network and an interactive map—without a backend or live telemetry." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://juliusdarang.com/blogs/how-i-built-the-visayas-grid.html" />
+  <meta property="og:image" content="https://juliusdarang.com/assets/visayasgrid.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&amp;display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <script src="../assets/theme.js"></script>
+  <link rel="stylesheet" href="../assets/main.css" />
+</head>
+<body>
+
+<!--#set
+  ROOT=../
+  NAV_PROJECTS=../pages/projects.html
+  NAV_WRITING=../pages/writings.html
+  ACTIVE_PROJECTS=
+  ACTIVE_WRITING=
+-->
+<!--#nav-->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <nav aria-label="Main navigation">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="nav-logo">Julius Darang</a>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="../pages/projects.html" >Projects</a></li>
+          <li><a href="../pages/writings.html" >Writing</a></li>
+          <li><a href="../index.html#about">About</a></li>
+        </ul>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <circle cx="8" cy="8" r="2.75" />
+            <path d="M8 1.5v1.25M8 13.25v1.25M14.5 8h-1.25M2.75 8H1.5M12.6 3.4l-.9.9M4.3 11.7l-.9.9M12.6 12.6l-.9-.9M4.3 4.3l-.9-.9" />
+          </svg>
+          <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <path d="M13.2 10.7A5.5 5.5 0 0 1 5.3 2.8 5.5 5.5 0 1 0 13.2 10.7Z" />
+          </svg>
+        </button>
+        <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+    </div>
+  </nav>
+<!--#/nav-->
+
+  <header class="article-header" id="main-content">
+    <div class="wrap">
+      <a href="../pages/writings.html" class="back-link">← Writing</a>
+      <div class="article-meta">
+        <span>Power Systems · Software</span>
+        <span class="meta-dot">·</span>
+        <span>September 5, 2026</span>
+        <span class="meta-dot">·</span>
+        <span>8 min read</span>
+      </div>
+      <h1>How I Built an Interactive Model of the Visayas Power Grid</h1>
+      <p class="article-lede">A public map of an island power system, built from imperfect data, engineering judgment, and a deliberately simple architecture.</p>
+    </div>
+  </header>
+
+  <article class="article-body">
+    <div class="wrap">
+
+      <p>Most people only notice the power grid when it stops working. Behind every light switch is a network of generators, substations, transmission lines, and control systems balancing electricity from one moment to the next.</p>
+
+      <p>The Visayas makes that network especially interesting. Its major load centers and power plants are spread across several islands. Cebu, Negros, Panay, Leyte, Samar, Bohol, and nearby islands are tied together by overhead lines and submarine connections. The region also exchanges power with the wider Philippine grid.</p>
+
+      <p>I wanted to make that system easier to see. So I built <a href="https://visayasgrid.vercel.app">VisayasGrid</a>: an interactive map and offline power-flow model of the Visayas transmission network.</p>
+
+      <figure class="cs-figure">
+        <img src="../assets/visayasgrid.png" alt="The VisayasGrid app showing substations and transmission lines across the Visayas islands." loading="lazy" />
+        <figcaption>The live app shows the modeled network by voltage level, island, and load-flow result.</figcaption>
+      </figure>
+
+      <h2>What I was trying to build</h2>
+
+      <p>The goal was not to recreate an electric utility's control room. I do not have access to NGCP's private network model or real-time operating data. The goal was smaller and more useful: build a public, inspectable model that shows how the main Visayas transmission network fits together and how power might move through it under a defined set of assumptions.</p>
+
+      <p>The current dataset contains <strong>54 buses</strong>, <strong>60 lines</strong>, <strong>7 submarine connections</strong>, and <strong>115 generator units</strong>. In power-system language, a bus is an electrical connection point—usually a substation or part of one—where lines, loads, and generators meet. It is not a passenger bus, although that misunderstanding has made the project harder to explain than the load flow itself.</p>
+
+      <p>The map lets you filter the network by island and voltage, search for substations, inspect buses and lines, and compare several demand scenarios. It turns a collection of tables and engineering parameters into something you can explore.</p>
+
+      <h2>The difficult part was the data</h2>
+
+      <p>A map needs coordinates and connections. A power-flow model needs much more: voltage levels, line impedances, load estimates, generator capacities, and a reference point for the entire network.</p>
+
+      <p>There is no single public file containing all of that for the Visayas Grid. I started with PyPSA-PH, an open model of the Philippine power system, then checked and corrected the Visayas subset using public material from NGCP, DOE plant lists, OpenStreetMap, OpenInfraMap, and other available records.</p>
+
+      <p>Some fields can be sourced directly. A substation's existence, approximate location, voltage level, or the connection between two areas may appear in public documents. Other fields are not published. Line impedance and demand at an individual bus, for example, often require a documented engineering estimate.</p>
+
+      <p>I did not want those two categories to blur together. The project keeps a source ledger that labels values as <em>sourced</em>, inherited from <em>PyPSA-PH</em>, or an <em>estimate</em>. That distinction matters because a model can look precise while resting on uncertain inputs.</p>
+
+      <blockquote>
+        <p>A converged model is not automatically a correct model. It only proves that the equations found an answer for the assumptions I gave them.</p>
+      </blockquote>
+
+      <h2>How the model works</h2>
+
+      <p>The project has two separate halves. Python prepares and solves the electrical network. The website displays the finished result.</p>
+
+      <pre><code>Public data + engineering assumptions
+        ↓
+Clean buses, lines, generators, and scenarios
+        ↓
+pandapower load-flow calculation
+        ↓
+GeoJSON files
+        ↓
+React + Leaflet interactive map</code></pre>
+
+      <p>The Python pipeline first turns the raw records into clean tables. It assigns readable names, joins generators and loads to the correct buses, handles different voltage levels, checks which parts of the network are connected, and creates demand and generation scenarios.</p>
+
+      <p>It then builds the electrical network in <strong>pandapower</strong>, a Python library for power-system analysis. The program runs a load flow: a calculation that estimates the voltage at each bus and the real and reactive power moving through each line.</p>
+
+      <p>In simple terms, the solver checks whether the selected generation and demand can be balanced through the network I described. One bus at Ormoc acts as the reference, or <em>slack bus</em>. It absorbs the remaining mismatch and serves as a proxy for power exchanged through the HVDC connection. Transformers handle connections between buses at different voltage levels.</p>
+
+      <p>The default result requests an AC load flow for the peak-demand scenario. AC is the more complete representation because it considers voltage magnitude, reactive power, and losses. If that calculation cannot converge, the build can fall back to a simpler DC approximation, and the output records which solver actually succeeded. The app also includes mean-demand, off-peak, and separate DC datasets.</p>
+
+      <h2>Why the website has no backend</h2>
+
+      <p>My first design was much heavier. It included a database, an API, containers, and a cloud server. It was a reasonable architecture for a large platform, but unnecessary for a small network that changes infrequently.</p>
+
+      <p>So I removed almost all of it.</p>
+
+      <p>The load flow runs offline. The results are exported as GeoJSON and committed with the website. React manages the filters and panels, while Leaflet draws the buses and lines over a basemap. Vercel serves the finished files. There is no runtime database, API server, user account, or browser-side power-flow solver.</p>
+
+      <p>This made the project cheaper to host and easier to maintain. More importantly, it let me focus on the part that mattered: the network model and the way people explore it.</p>
+
+      <h2>How to read the map</h2>
+
+      <p>Each marker represents a modeled electrical bus. Each line represents a transmission connection between two endpoints. Colors separate the main voltage levels—69, 138, 230, and 350 kV—and the interface can also show line loading from the selected solution.</p>
+
+      <p>You can click a feature to inspect its properties, filter the view by island or voltage, search for a substation, and switch between available scenarios. Selecting a bus highlights its immediate neighbors so you can follow the local network without losing the larger picture.</p>
+
+      <p>The lines on the map are straight connections between substations. They do not reproduce the surveyed route of every transmission tower or submarine cable. The visual is about electrical topology—what connects to what—more than exact right-of-way geometry.</p>
+
+      <h2>What the model cannot tell you</h2>
+
+      <p>VisayasGrid is not live telemetry. It does not show today's dispatch, current outages, actual bus voltages, or the real loading of NGCP equipment. The build date tells you when I generated the files, not when the grid conditions were observed.</p>
+
+      <p>The scenarios combine historical demand patterns with estimated dispatch. Some circuits are aggregated into a single map feature. Generator units are grouped at their connected buses. The HVDC interchange is represented by the slack-bus result rather than a fully controlled and capacity-constrained link.</p>
+
+      <p>These limits do not make the model useless. They define the questions it can answer. It is good for understanding the network's structure, learning how a power-flow pipeline works, and exploring the consequences of stated assumptions. It is not suitable for operating decisions.</p>
+
+      <h2>What I learned</h2>
+
+      <p>The frontend was not the heart of this project. The hard work was deciding what the data meant, checking whether connections were physically sensible, handling mixed voltage levels correctly, and refusing to treat a plausible result as proof.</p>
+
+      <p>I also learned that a smaller architecture can produce a stronger project. Removing the backend did not reduce the engineering value. It made the system easier to understand. The complete path—from source record to solved value to visible feature—can be inspected without chasing requests across several services.</p>
+
+      <p>That is the part of the project I care about most: not just producing a map, but making the reasoning behind it visible.</p>
+
+      <h2>What comes next</h2>
+
+      <p>The main transmission backbone is already modeled, but the network is not complete. The next phase is to expand the 69 kV sub-transmission layer, beginning with missing load-end substations and unresolved locations. After that, I plan to connect more DOE-listed generators and reconcile the network against additional one-line diagrams and public records.</p>
+
+      <p>The method will stay the same: source first, estimate only when necessary, label the difference, rebuild the model, and check the result before publishing it.</p>
+
+      <p>You can <a href="https://visayasgrid.vercel.app">explore the live map</a>, read the shorter <a href="../proj/visayasgrid.html">project case study</a>, or inspect the full <a href="https://github.com/julius-darang/visayasgrid">source code and data ledger on GitHub</a>.</p>
+
+    </div>
+  </article>
+
+  <div class="article-footer">
+    <div class="wrap">
+      <h3>More Writing</h3>
+      <div class="related-list">
+        <div class="related-item">
+          <div class="card-title-row">
+            <a href="modelling-the-philippine-grid.html" class="related-title">I built a live model of the Philippine grid. The code was the easy part.</a>
+            <a href="modelling-the-philippine-grid.html" class="card-proceed">Read →</a>
+          </div>
+          <p class="related-date">Jun 2026</p>
+        </div>
+        <div class="related-item">
+          <div class="card-title-row">
+            <a href="visayas-grid-engineering.html" class="related-title">Why the Visayas Grid is the most interesting engineering problem in the Philippines</a>
+            <a href="visayas-grid-engineering.html" class="card-proceed">Read →</a>
+          </div>
+          <p class="related-date">Mar 2026</p>
+        </div>
+        <div class="related-item">
+          <div class="card-title-row">
+            <a href="how-to-create-a-website.html" class="related-title">How I Created and Deployed a Website From Scratch</a>
+            <a href="how-to-create-a-website.html" class="card-proceed">Read →</a>
+          </div>
+          <p class="related-date">Apr 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--#footer-->
+  <div class="wrap">
+    <footer>
+      <span>Julius Darang — REE · Philippines</span>
+      <a href="mailto:colesjulius3@gmail.com">julius.darang@gmail.com</a>
+    </footer>
+  </div>
+<!--#/footer-->
+
+</body>
+</html>
