@@ -27,6 +27,7 @@ SOURCE_FILES = [
     "blogs/template.html",
     "blogs/modelling-the-philippine-grid.html",
     "blogs/how-i-built-the-visayas-grid.html",
+    "blogs/my-first-llm-subscription.html",
     "blogs/visayas-grid-engineering.html",
     "blogs/how-to-build-the-life-you-want.html",
     "blogs/how-to-create-a-website.html",

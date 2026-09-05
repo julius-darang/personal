@@ -200,6 +200,16 @@ def main() -> int:
             continue
 
         relative = page.relative_to(ROOT)
+        source = page.read_text(encoding="utf-8")
+        for marker, label in (
+            ('<meta name="description"', "meta description"),
+            ('<link rel="canonical"', "canonical URL"),
+            ('property="og:image"', "Open Graph image"),
+            ('name="twitter:card"', "Twitter card"),
+            ('application/ld+json', "JSON-LD data"),
+        ):
+            if marker not in source:
+                parser.error(f"missing {label}")
         if not parser.has_doctype:
             parser.error("missing <!doctype html>")
         for required in ("html", "head", "body", "title"):
