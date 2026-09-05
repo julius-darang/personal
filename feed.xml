@@ -5,8 +5,16 @@
     <link>https://juliusdarang.com</link>
     <description>Power Systems Engineer · Writing about systems, AI, and building a meaningful technical career.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Jun 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://juliusdarang.com/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>How I Built an Interactive Model of the Visayas Power Grid</title>
+      <link>https://juliusdarang.com/blogs/how-i-built-the-visayas-grid.html</link>
+      <description>A plain-language look at how public data, engineering assumptions, pandapower, and a simple static website became an interactive model of the Visayas transmission network.</description>
+      <pubDate>Sat, 05 Sep 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/how-i-built-the-visayas-grid.html</guid>
+    </item>
 
     <item>
       <title>I built a live model of the Philippine grid. The code was the easy part.</title>

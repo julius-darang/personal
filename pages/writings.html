@@ -18,7 +18,7 @@
   NAV_PROJECTS=../pages/projects.html
   NAV_WRITING=../pages/writings.html
   ACTIVE_PROJECTS=
-  ACTIVE_WRITING=class="active"
+  ACTIVE_WRITING=class="active" aria-current="page"
 -->
 <!--#nav-->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -29,7 +29,7 @@
       <div class="nav-actions">
         <ul class="nav-links">
           <li><a href="../pages/projects.html" >Projects</a></li>
-          <li><a href="../pages/writings.html" class="active">Writing</a></li>
+          <li><a href="../pages/writings.html" class="active" aria-current="page">Writing</a></li>
           <li><a href="../index.html#about">About</a></li>
         </ul>
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme" aria-pressed="false">
@@ -62,6 +62,22 @@
 
   <div class="wrap">
     <div class="project-grid" id="project-grid">
+
+      <div class="project-card" data-category="Power Systems &amp; Software" id="visayas-grid-explainer">
+        <div class="card-main">
+          <p class="card-tag">Power Systems &amp; Software</p>
+          <div class="card-title-row">
+            <p class="card-title">How I Built an Interactive Model of the Visayas Power Grid</p>
+            <a href="../blogs/how-i-built-the-visayas-grid.html" class="card-proceed">Read Post →</a>
+          </div>
+          <p class="card-desc">A complete, plain-language look at the data, load-flow model, and deliberately simple architecture behind my interactive map of the Visayas transmission network.</p>
+          <div class="card-stack">
+            <span class="stack-tag">Power Systems</span>
+            <span class="stack-tag">pandapower</span>
+            <span class="stack-tag">React</span>
+          </div>
+        </div>
+      </div>
 
       <div class="project-card" data-category="AI & Tools" id="first-llm-sub">
         <div class="card-main">

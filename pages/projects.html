@@ -17,7 +17,7 @@
   ROOT=../
   NAV_PROJECTS=../pages/projects.html
   NAV_WRITING=../pages/writings.html
-  ACTIVE_PROJECTS=class="active"
+  ACTIVE_PROJECTS=class="active" aria-current="page"
   ACTIVE_WRITING=
 -->
 <!--#nav-->
@@ -28,7 +28,7 @@
       <a href="../index.html" class="nav-logo">Julius Darang</a>
       <div class="nav-actions">
         <ul class="nav-links">
-          <li><a href="../pages/projects.html" class="active">Projects</a></li>
+          <li><a href="../pages/projects.html" class="active" aria-current="page">Projects</a></li>
           <li><a href="../pages/writings.html" >Writing</a></li>
           <li><a href="../index.html#about">About</a></li>
         </ul>
@@ -63,30 +63,12 @@
   <div class="wrap">
     <div class="project-grid" id="project-grid">
 
-      <div class="project-card" id="powergrid">
-        <div class="card-main">
-          <p class="card-tag">Power Systems</p>
-          <div class="card-title-row">
-            <p class="card-title">Philippine Power Grid Visualization</p>
-            <a href="https://github.com/julius-darang/powergrid" class="card-proceed">Go →</a>
-          </div>
-          <p class="card-desc">A public web app that visualizes the Philippine power grid — the Visayas transmission backbone (69 / 138 / 230 kV) plus per-province distribution — with a pandapower load-flow model running underneath. Real NGCP topology isn't public, so the build combines OSM, a hand-curated dataset of NGCP substations, and flagged synthetic infill. Phase 1 (data foundation) is done: 2,960 buses and 2,967 lines, with the Visayas peak load landing within 4% of published figures.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">pandapower</span>
-            <span class="stack-tag">PostGIS</span>
-            <span class="stack-tag">FastAPI</span>
-            <span class="stack-tag">OSMnx</span>
-          </div>
-        </div>
-      </div>
-
       <div class="project-card" id="visayasgrid">
         <div class="card-main">
-          <p class="card-tag">Power Systems</p>
+          <p class="card-tag">Power Systems · Live</p>
           <div class="card-title-row">
             <p class="card-title">Visayas Grid — Live Prototype</p>
-            <a href="../proj/visayasgrid.html" class="card-proceed">Go →</a>
+            <a href="../proj/visayasgrid.html" class="card-proceed">Case study →</a>
           </div>
           <p class="card-desc">A lightweight, Vercel-only prototype that visualizes and models the Visayas transmission grid (69 / 138 / 230 kV plus the 350 kV HVDC link) from real, publicly available NGCP data. Data is precomputed into static JSON and served from the CDN — no backend or database. A Leaflet map encodes voltage and line loading by color with click-to-inspect bus and line panels, and a pandapower load-flow snapshot runs behind a topology-validation gate.</p>
           <div class="card-stack">
@@ -95,6 +77,24 @@
             <span class="stack-tag">Leaflet</span>
             <span class="stack-tag">JavaScript</span>
             <span class="stack-tag">Vercel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" id="powergrid">
+        <div class="card-main">
+          <p class="card-tag">Power Systems · R&amp;D</p>
+          <div class="card-title-row">
+            <p class="card-title">Philippine Power Grid Visualization</p>
+            <a href="https://github.com/julius-darang/powergrid" class="card-proceed">GitHub →</a>
+          </div>
+          <p class="card-desc">A public web app that visualizes the Philippine power grid — the Visayas transmission backbone (69 / 138 / 230 kV) plus per-province distribution — with a pandapower load-flow model running underneath. Real NGCP topology isn't public, so the build combines OSM, a hand-curated dataset of NGCP substations, and flagged synthetic infill. Phase 1 (data foundation) is done: 2,960 buses and 2,967 lines, with the Visayas peak load landing within 4% of published figures.</p>
+          <div class="card-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">pandapower</span>
+            <span class="stack-tag">PostGIS</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">OSMnx</span>
           </div>
         </div>
       </div>
