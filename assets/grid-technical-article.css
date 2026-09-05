@@ -1,0 +1,15 @@
+/* Scoped additions for the engineering article; shared blog typography is inherited. */
+.grid-technical h2[id] { scroll-margin-top: 5rem; }
+.grid-technical .technical-toc { max-width: 640px; padding: 1.25rem; border: 1px solid var(--border); background: var(--bg-1); margin-block: 2rem; }
+.grid-technical .technical-toc p { margin-bottom: .5rem; }
+.grid-technical .technical-toc ol { margin-bottom: 0; }
+.grid-technical .technical-table { max-width: 100%; overflow-x: auto; margin-block: 1.5rem 2rem; border: 1px solid var(--border); }
+.grid-technical .technical-table:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.grid-technical table { width: 100%; border-collapse: collapse; font-size: .8rem; line-height: 1.65; color: var(--text); }
+.grid-technical caption { text-align: left; padding: .8rem 1rem; color: var(--bright); font-weight: 500; background: var(--bg-1); }
+.grid-technical th, .grid-technical td { text-align: left; padding: .7rem .85rem; border-top: 1px solid var(--border); vertical-align: top; min-width: 5rem; }
+.grid-technical th { color: var(--bright); font-weight: 500; }
+.grid-technical td { font-variant-numeric: tabular-nums; }
+.grid-technical .cs-figure { margin: 2rem 0; }
+.grid-technical .cs-figure img { width: 100%; height: auto; }
+@media (max-width: 600px) { .grid-technical th, .grid-technical td { padding: .6rem; } .grid-technical .technical-toc { padding: 1rem; } }
