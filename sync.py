@@ -29,6 +29,7 @@ HTML_FILES = [
     "blogs/template.html",
     "blogs/modelling-the-philippine-grid.html",
     "blogs/how-i-built-the-visayas-grid.html",
+    "blogs/visayas-grid-technical-guide.html",
     "blogs/my-first-llm-subscription.html",
     "blogs/visayas-grid-engineering.html",
     "blogs/how-to-build-the-life-you-want.html",
@@ -85,9 +86,12 @@ def sync():
         nav = resolve_vars(load_partial("nav.html"), vars_)
         footer = resolve_vars(load_partial("footer.html"), vars_)
         head = resolve_vars(load_partial("head.html"), vars_)
+        newsletter = resolve_vars(load_partial("article-newsletter.html"), vars_)
 
         content = sync_section(content, "nav", nav)
         content = sync_section(content, "footer", footer)
+        if "<!--#newsletter-->" in content:
+            content = sync_section(content, "newsletter", newsletter)
         if "<!--#head-->" in content:
             content = sync_section(content, "head", head)
 

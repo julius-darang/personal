@@ -38,5 +38,32 @@ class VisayasGridExplainerTests(unittest.TestCase):
             self.assertIn(expected, content, f"Missing registration in {relative_path}")
 
 
+class VisayasGridTechnicalGuideTests(unittest.TestCase):
+    def test_technical_guide_is_registered_and_referenced(self):
+        article = ROOT / "blogs" / "visayas-grid-technical-guide.html"
+        self.assertTrue(article.exists(), "The technical guide must exist")
+
+        content = article.read_text(encoding="utf-8")
+        for expected in (
+            "Inside the Visayas Grid Model: A Power Systems Engineering Guide",
+            "The AC Newton–Raphson calculation",
+            "Engineering field dictionary",
+            "What this model can establish",
+        ):
+            self.assertIn(expected, content)
+
+        registrations = {
+            "build.py": f'"blogs/{article.name}"',
+            "sync.py": f'"blogs/{article.name}"',
+            "pages/writings.html": f'../blogs/{article.name}',
+            "sitemap.xml": f'https://juliusdarang.com/blogs/{article.name}',
+            "feed.xml": f'https://juliusdarang.com/blogs/{article.name}',
+            "proj/visayasgrid.html": f'../blogs/{article.name}',
+        }
+        for relative_path, expected in registrations.items():
+            content = (ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn(expected, content, f"Missing registration in {relative_path}")
+
+
 if __name__ == "__main__":
     unittest.main()

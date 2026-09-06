@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inside the Visayas Grid Model: A Power Systems Engineering Guide — Julius Darang</title>
+  <meta name="description" content="Buses, lines, generators, load assumptions, AC and DC power-flow equations, scenario results, and a field guide to the VisayasGrid map and data tables." />
+  <meta name="author" content="Julius Darang" />
+  <link rel="canonical" href="https://juliusdarang.com/blogs/visayas-grid-technical-guide.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Inside the Visayas Grid Model: A Power Systems Engineering Guide" />
+  <meta property="og:description" content="Buses, lines, generators, load assumptions, AC and DC power-flow equations, scenario results, and a field guide to the VisayasGrid map and data tables." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://juliusdarang.com/blogs/visayas-grid-technical-guide.html" />
+  <meta property="og:image" content="https://juliusdarang.com/assets/visayasgrid.png" />
+  <meta property="og:image:alt" content="Visayas Grid interactive map showing transmission lines and substations." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Inside the Visayas Grid Model: A Power Systems Engineering Guide" />
+  <meta name="twitter:description" content="Buses, lines, generators, load assumptions, AC and DC power-flow equations, scenario results, and a field guide to the VisayasGrid map and data tables." />
+  <meta name="twitter:image" content="https://juliusdarang.com/assets/visayasgrid.png" />
+  <meta name="twitter:image:alt" content="Visayas Grid interactive map showing transmission lines and substations." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Inside the Visayas Grid Model: A Power Systems Engineering Guide",
+    "description": "Buses, lines, generators, load assumptions, AC and DC power-flow equations, scenario results, and a field guide to the VisayasGrid map and data tables.",
+    "datePublished": "2026-09-05",
+    "author": {
+      "@type": "Person",
+      "name": "Julius Darang",
+      "url": "https://juliusdarang.com/"
+    },
+    "image": "https://juliusdarang.com/assets/visayasgrid.png",
+    "mainEntityOfPage": "https://juliusdarang.com/blogs/visayas-grid-technical-guide.html",
+    "articleSection": "Power Systems · Software",
+    "inLanguage": "en"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&amp;display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <script src="../assets/theme.js"></script>
+  <link rel="stylesheet" href="../assets/main.css" />
+  <link rel="stylesheet" href="../assets/grid-technical-article.css" />
+</head>
+<body>
+
+<!--#set
+  ROOT=../
+  NAV_PROJECTS=../pages/projects.html
+  NAV_WRITING=../pages/writings.html
+  ACTIVE_PROJECTS=
+  ACTIVE_WRITING=
+-->
+<!--#nav-->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+  <nav aria-label="Main navigation">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="nav-logo">Julius Darang</a>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="../pages/projects.html" >Projects</a></li>
+          <li><a href="../pages/writings.html" >Writing</a></li>
+          <li><a href="../index.html#about">About</a></li>
+        </ul>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <circle cx="8" cy="8" r="2.75" />
+            <path d="M8 1.5v1.25M8 13.25v1.25M14.5 8h-1.25M2.75 8H1.5M12.6 3.4l-.9.9M4.3 11.7l-.9.9M12.6 12.6l-.9-.9M4.3 4.3l-.9-.9" />
+          </svg>
+          <svg class="theme-icon theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <path d="M13.2 10.7A5.5 5.5 0 0 1 5.3 2.8 5.5 5.5 0 1 0 13.2 10.7Z" />
+          </svg>
+        </button>
+        <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+    </div>
+  </nav>
+<!--#/nav-->
+
+
+  <header class="article-header" id="main-content">
+    <div class="wrap">
+      <a href="../proj/visayasgrid.html" class="back-link">← Visayas Grid project</a>
+      <div class="article-meta"><span>Power Systems</span><span class="meta-dot">·</span><span>September 2026</span><span class="meta-dot">·</span><span>24 min read</span></div>
+      <h1>Inside the Visayas Grid Model: A Power Systems Engineering Guide</h1>
+      <p class="article-lede">From the bus admittance matrix to the map legend: what the network represents, how the four snapshots are calculated, and how to read the results as a power systems engineer.</p>
+    </div>
+  </header>
+  <article class="article-body grid-technical">
+    <div class="wrap">
+      <p>Open <a href="https://visayasgrid.vercel.app">VisayasGrid</a> and the first result is a transmission map: substations, generating stations, inter-island connections, voltage levels, and power flows. Behind those symbols is a balanced, steady-state network model. The engineering question is what each displayed quantity means, which equations produced it, and which assumptions limit the conclusion.</p>
+      <p>This is the technical companion to <a href="how-i-built-the-visayas-grid.html">How I Built an Interactive Model of the Visayas Power Grid</a>. It documents the local project inspected on 5 September 2026. The numerical results below are saved GeoJSON and manifest values, not a fresh simulation or live telemetry. Source files and saved scenarios do not all have the same vintage.</p>
+      <figure class="cs-figure"><img src="../assets/visayasgrid.png" alt="VisayasGrid transmission map with its island network, bus markers, transmission corridors, and engineering controls." loading="lazy" /><figcaption>Geography locates the network. The engineering interpretation comes from the selected snapshot, electrical parameters, and solver mode.</figcaption></figure>
+      <div class="technical-toc" aria-label="Article contents">
+        <p><strong>In this guide</strong></p>
+        <ol>
+          <li><a href="#network">Network scope and data provenance</a></li>
+          <li><a href="#buses">Buses, voltage bases, and transformers</a></li>
+          <li><a href="#lines">Lines, submarine cables, and ratings</a></li>
+          <li><a href="#loads">Loads and scenario construction</a></li>
+          <li><a href="#generation">Generator aggregation and dispatch</a></li>
+          <li><a href="#ac">AC Newton–Raphson calculations</a></li>
+          <li><a href="#dc">DC Linear and the slack interchange</a></li>
+          <li><a href="#results">Saved results and worked calculations</a></li>
+          <li><a href="#legend">Map legends and filters</a></li>
+          <li><a href="#tables">Data tables and field dictionary</a></li>
+          <li><a href="#pipeline">Frameworks and reproducibility</a></li>
+          <li><a href="#limits">What the model can establish</a></li>
+        </ol>
+      </div>
+
+      <h2 id="network">1. The network being represented</h2>
+      <p>The current clean dataset contains <strong>54 buses, 60 line records, seven submarine line records, and 115 generator units</strong>. The generator table totals <strong>3,380.7 MW of installed capacity</strong>. Those are model inventory counts. They are not a census of every operating asset in the Visayas, and installed capacity is not the same as dispatched generation or dependable capacity.</p>
+      <p>The buses span Cebu (18), Negros (12), Panay (9), Leyte (7), Bohol (4), Samar (3), and Guimaras (1). Biliran appears among the interface's island choices but has no bus in this dataset. Multiple physical circuits can be aggregated into one line record, so 60 records does not mean 60 individual circuits.</p>
+      <p>The starting network is inherited from PyPSA-PH v1.0. The preparation script selects NGCP-style prefixes 04 through 08, merges the Sta. Rita tap alias into its canonical bus, resolves readable names, and aggregates equipment attachments. Subsequent edits and source checks are recorded in <a href="https://github.com/julius-darang/visayasgrid/blob/main/data/SOURCES.md">SOURCES.md</a>. The inherited hourly demand series is described there as 2023-vintage.</p>
+      <p>Provenance is field-specific: <code>sourced</code> means checked against a cited reference, <code>pypsa-ph</code> means inherited without independent verification, and <code>estimate</code> means an engineering assumption. A verified substation coordinate does not verify its load, conductor resistance, or transformer rating. The source registry's historical notes also need to be read alongside the actual CSVs; some notes describe earlier network states.</p>
+
+      <h2 id="buses">2. Buses, voltage levels, and the hidden transformer layer</h2>
+      <p>A bus is the electrical node at which equipment injections and branch connections meet. In this model, one named map feature usually represents a facility or an aggregated connection point. It does not reproduce every busbar section, bay, breaker, or transformer winding at a physical substation.</p>
+      <div class="technical-table" role="region" aria-label="Nominal voltage labels in the current CSVs" tabindex="0"><table><caption>Nominal voltage labels in the current CSVs</caption><thead><tr><th scope="col">kV</th><th scope="col">Bus records</th><th scope="col">Line records</th><th scope="col">Interpretation</th></tr></thead><tbody><tr><td>350</td><td>1</td><td>0</td><td>Ormoc HVDC label; AC bus constructed at 230 kV</td></tr><tr><td>230</td><td>15</td><td>13</td><td>Higher-voltage backbone and connections</td></tr><tr><td>138</td><td>37</td><td>42</td><td>Main modeled AC transmission layer</td></tr><tr><td>69</td><td>1</td><td>5</td><td>Partial sub-transmission coverage</td></tr></tbody></table></div>
+      <p><code>bus_type</code> is a display classification: substation, generator, BESS, or HVDC. It is separate from the load-flow classification of PQ, PV, or slack. A substation can carry both demand and aggregated generation; a generator icon does not by itself imply voltage control.</p>
+      <h3>Per-unit voltage and the Ormoc exception</h3>
+      <pre><code>V_pu = V_actual / V_base
+Z_base = V_base² / S_base
+Z_pu = Z_ohm / Z_base</code></pre>
+      <p>With line-to-line kV and three-phase MVA, the impedance base is in ohms. A 138 kV bus at 0.97 pu corresponds to 133.86 kV. The same pu voltage at 230 kV corresponds to 223.10 kV. Per-unit values let the solver express network quantities consistently across voltage levels.</p>
+      <p>Ormoc is special: its exported <code>v_nom = 350</code> labels the HVDC link, but <code>build_network(use_ac=True)</code> creates its AC bus at <strong>230 kV</strong>. The displayed 350 kV value must not be multiplied by its AC <code>vm_pu</code> to infer terminal AC voltage. The solver fixes Ormoc at 1.0 pu through an external-grid element; the model does not explicitly solve the converter or the DC cable.</p>
+      <h3>Cross-voltage connections</h3>
+      <p>For endpoints with different nominal voltages, the AC builder inserts an intermediate bus at the lower voltage and a transformer at the higher-voltage end. The line then connects at a common lower-voltage base. An intermediate node named <code>_trafo_&lt;HV bus&gt;_&lt;LV kV&gt;</code> is reused for the same high-side bus and lower voltage. These internal nodes are omitted from exported map features.</p>
+      <div class="technical-table" role="region" aria-label="Assumed transformer equivalents" tabindex="0"><table><caption>Assumed transformer equivalents</caption><thead><tr><th scope="col">HV / LV kV</th><th scope="col">Rating MVA</th><th scope="col">Short-circuit impedance %</th></tr></thead><tbody><tr><td>230 / 138</td><td>200</td><td>10</td></tr><tr><td>230 / 69</td><td>100</td><td>10</td></tr><tr><td>138 / 69</td><td>100</td><td>8</td></tr></tbody></table></div>
+      <p>All three defaults use <code>vkr_percent = 0.5</code>, <code>pfe_kw = 0</code>, and <code>i0_percent = 0</code>. The equivalent has nonzero series impedance and copper loss; calling it a completely ideal, lossless transformer would be incorrect. On its own MVA base, a 10% impedance with 0.5% resistance has approximately 0.0999 pu reactance. There is no calibrated tap-control scheme or exported transformer-loading table.</p>
+      <p>This construction repairs voltage-base consistency, but it is still an assumed substation equivalent. It uses endpoint bus voltages to select the electrical base, while the map retains the line's CSV voltage label. It does not establish the actual winding arrangement, equipment count, or rating at that location.</p>
+
+      <h2 id="lines">3. Line impedance, cable charging, and thermal loading</h2>
+      <p>Each branch references <code>from_bus</code> and <code>to_bus</code> and supplies length, series resistance and reactance, shunt capacitance, current rating, and a parallel-circuit count to <code>create_line_from_parameters</code>. A balanced line is represented by its series impedance and shunt admittance.</p>
+      <pre><code>Z_series = (r + jx) × length_km / n_parallel
+C_total = c × length_km × n_parallel
+Y_shunt = j × 2πf × C_total
+f = 60 Hz; convert nF to F before calculating Y</code></pre>
+      <p>The shunt contribution is divided between the two ends of the equivalent π circuit. Parallel circuits reduce equivalent series impedance and increase aggregate charging and current capability. The project passes <code>parallel</code> to pandapower rather than merely multiplying a number in the legend. See the <a href="https://pandapower.readthedocs.io/en/stable/elements/line.html">pandapower line model</a> for the element conventions.</p>
+      <h3>Where length and impedance come from</h3>
+      <p>The preparation pipeline calculates endpoint great-circle distance with the haversine formula, using an Earth radius of 6,371 km and a minimum span of 0.5 km. GeoJSON likewise draws a straight segment between endpoints. These are geographical proxies, not surveyed conductor or submarine cable routes.</p>
+      <p>For ordinary inherited lines, total resistance and reactance are divided by that proxy length to obtain Ω/km. Selected implausible inherited values are replaced through explicit overrides for Magdugo–Daan Lungsod, Kananga–Ormoc, Tabango–Kananga, and Colon–Quiot. The first and last use the 138 kV overhead defaults; the two Leyte corridors use 230 kV defaults.</p>
+      <div class="technical-table" role="region" aria-label="Electrical defaults used by the pipeline" tabindex="0"><table><caption>Electrical defaults used by the pipeline</caption><thead><tr><th scope="col">Type</th><th scope="col">r Ω/km</th><th scope="col">x Ω/km</th><th scope="col">c nF/km</th><th scope="col">Current rating</th></tr></thead><tbody><tr><td>230 kV overhead</td><td>0.06</td><td>0.4</td><td>9.0</td><td>From inherited MVA</td></tr><tr><td>138 kV overhead</td><td>0.1</td><td>0.42</td><td>10.0</td><td>From inherited MVA</td></tr><tr><td>69 kV overhead</td><td>0.2</td><td>0.45</td><td>8.7</td><td>From inherited MVA</td></tr><tr><td>Submarine XLPE</td><td>0.0754</td><td>0.121</td><td>200.0</td><td>0.645 kA / circuit</td></tr></tbody></table></div>
+      <p>The overhead resistance/reactance defaults are reference values and selective overrides, not a blanket replacement of every line. During AC construction, an overhead line with zero CSV capacitance receives 9.0, 10.0, or 8.7 nF/km according to its effective 230, 138, or 69 kV base. The submarine defaults are assumptions associated in the code with a representative 630 mm² Cu XLPE cable. They are not manufacturer certificates or route-specific IEC ampacity calculations.</p>
+      <h3>The seven submarine records</h3>
+      <div class="technical-table" role="region" aria-label="Submarine records, preserving CSV endpoint order" tabindex="0"><table><caption>Submarine records, preserving CSV endpoint order</caption><thead><tr><th scope="col">From</th><th scope="col">To</th><th scope="col">kV</th><th scope="col">Parallel</th></tr></thead><tbody><tr><td>Bantap</td><td>Buenavista (Guimaras)</td><td>69</td><td>1</td></tr><tr><td>Barotac Viejo</td><td>E.B. Magalona</td><td>230</td><td>1</td></tr><tr><td>Amlan</td><td>Samboan</td><td>138</td><td>2</td></tr><tr><td>Magdugo</td><td>Calatrava</td><td>230</td><td>1</td></tr><tr><td>Daanbantayan</td><td>Tabango</td><td>230</td><td>2</td></tr><tr><td>Maasin</td><td>Ubay</td><td>138</td><td>1</td></tr><tr><td>Argao</td><td>Maribojoc</td><td>230</td><td>1</td></tr></tbody></table></div>
+      <p>Classification uses explicit endpoint pairs, not simply whether a line crosses between islands. That prevents the Leyte–Samar bridge crossing from being automatically treated as submarine. The constants list includes a possible Dumanjug–Corella pair, but it is not one of the seven current line records. Record count, circuit count, route identity, and transfer capability remain distinct quantities.</p>
+      <h3>How loading is calculated</h3>
+      <pre><code>I_rated,kA = S_rated,MVA / (√3 × V_nom,kV)
+loading_% = 100 × max(I_from, I_to)
+                  / (I_max × n_parallel × derating_factor)</code></pre>
+      <p>The first expression is used when deriving overhead current ratings from inherited MVA ratings. The second describes the current-based loading returned by pandapower; this builder does not specify a separate derating factor, leaving its default at unity. The exported <code>i_from_ka</code> is only the from-end current. Cable charging can make the two terminal currents different, so from-end current alone need not reproduce the reported maximum loading. The <a href="https://pandapower.readthedocs.io/en/stable/elements/line.html">line result definitions</a> specify these conventions.</p>
+      <p>For scale, 0.645 kA at 138 kV corresponds to about 154.2 MVA per circuit at nominal voltage; two identical circuits give about 308.3 MVA. This is not an unconditional MW transfer limit: reactive flow, terminal voltage, other series equipment, and the rest of the network matter. The app's loading percentage is a comparison against an assumed current rating.</p>
+
+      <h2 id="loads">4. Loads: base estimates versus coincident snapshots</h2>
+      <p>A load enters pandapower as positive consumption <code>p_mw</code> and <code>q_mvar</code>. The project supplies constant-power loads; it does not assign motor dynamics, phase imbalance, or custom voltage-dependent ZIP fractions.</p>
+      <p>The base CSV estimates demand from feeder attachments: <strong>12 MW per feeder</strong>. The optional <code>load_estimates.csv</code> only fills buses with no feeder entry, excluding generator and BESS bus types. It does not overwrite existing feeder estimates. Thus <code>load_count</code> describes the base estimate and does not imply that the currently selected AC scenario still equals 12 MW times that count.</p>
+      <pre><code>P_base = feeder_count × 12 MW
+Q = 0.30 × P
+power_factor = P / √(P² + Q²)
+             = 1 / √(1 + 0.30²) ≈ 0.958 lagging</code></pre>
+      <p>For five feeders, the base estimate is 60 MW and 18 MVAr, or approximately 62.64 MVA. The rounded Q/P ratio approximates a 0.96 lagging power factor. It is a model assumption rather than a bus-specific measured power factor.</p>
+      <h3>Peak demand</h3>
+      <pre><code>P_system(t) = Σ P_i(t)
+t_peak = arg max_t P_system(t)
+P_i,peak = P_i(t_peak)</code></pre>
+      <p>The script filters the hourly demand columns to the Visayas prefixes, merges aliases, maps codes to readable names, and aligns them to the clean bus list. It then takes every bus's demand at the same system-maximum hour. Summing each bus's independent maximum would produce a noncoincident peak; that is not this method.</p>
+      <h3>Off-peak</h3>
+      <pre><code>t_offpeak = arg min_t P_system(t)
+P_i,offpeak = P_i(t_offpeak)</code></pre>
+      <p>Off-peak is the minimum coincident hour in the aligned series. It is not simply a fixed percentage of peak demand. The generation factors assume a low-demand night condition, including zero solar output, but they are not an observed dispatch record synchronized to the selected demand timestamp.</p>
+      <h3>Annual mean</h3>
+      <pre><code>P_i,mean = (1 / T) × Σ P_i(t), for T hourly rows</code></pre>
+      <p>The source series contains 8,760 hourly observations. Each bus is averaged independently; the resulting vector need not occur in any real hour. It is an average-demand operating point. Because AC power flow is nonlinear, solving the mean input does not equal averaging 8,760 solved voltages, flows, or losses. The project does not perform that annual time-series simulation.</p>
+      <p>For all three scenarios, Q is set to 0.30P and values are rounded to one decimal place. Buses absent from the aligned time series receive zero scenario demand. Their base feeder or gap-fill loads do not carry over. When the scenario CSV exists, its matching rows replace base demand during the AC build.</p>
+
+      <h2 id="generation">5. Generators, dispatch factors, and voltage support</h2>
+      <p>The unit-level table records generator ID, substation attachment, installed MW, carrier, build year, and estimated base dispatch. The preparation stage aggregates those units by bus. The solver reads the resulting bus injections, not 115 separately controlled machine models.</p>
+      <pre><code>P_g,scenario = P_nom,g × factor(carrier, scenario)
+P_gen,bus = Σ P_g,scenario for generators attached to the bus</code></pre>
+      <div class="technical-table" role="region" aria-label="Installed-capacity multipliers by scenario" tabindex="0"><table><caption>Installed-capacity multipliers by scenario</caption><thead><tr><th scope="col">Carrier</th><th scope="col">Peak</th><th scope="col">Mean</th><th scope="col">Off-peak</th></tr></thead><tbody><tr><td>Coal</td><td>.80</td><td>.70</td><td>.55</td></tr><tr><td>Geothermal</td><td>.85</td><td>.85</td><td>.85</td></tr><tr><td>Biomass</td><td>.70</td><td>.55</td><td>.45</td></tr><tr><td>Hydro</td><td>.50</td><td>.40</td><td>.30</td></tr><tr><td>Run-of-river</td><td>.40</td><td>.35</td><td>.25</td></tr><tr><td>Solar</td><td>.25</td><td>.18</td><td>.00</td></tr><tr><td>Wind</td><td>.30</td><td>.28</td><td>.28</td></tr><tr><td>Diesel</td><td>.30</td><td>.15</td><td>.05</td></tr><tr><td>BESS</td><td>1.00</td><td>.50</td><td>.20</td></tr></tbody></table></div>
+      <p>Unknown carriers fall back to 0.50. These are fixed assumed dispatch multipliers. They do not implement merit-order dispatch, unit commitment, minimum up/down times, ramp limits, reserves, or optimal power flow. For example, a 200 MW coal unit contributes 160 MW at peak, 140 MW at mean, and 110 MW off-peak. A 100 MW solar unit contributes 25, 18, and 0 MW respectively.</p>
+      <p>BESS appears in the factors, but it is modeled as positive generation. There is no charging schedule, state-of-charge constraint, MWh energy balance, or duration calculation. Likewise, <code>build_year</code> is reference metadata rather than a chronological commitment rule.</p>
+      <h3>PQ versus PV is decided after aggregation</h3>
+      <p>In the AC build, aggregate dispatched generation at a bus of at least <strong>100 MW</strong> becomes a voltage-controlling <code>gen</code> element with a <strong>1.02 pu</strong> setpoint. Lower aggregate dispatch becomes a static <code>sgen</code> injection with Q = 0. A bus can cross the threshold when the scenario changes; this changes voltage support as well as active-power dispatch.</p>
+      <p>The assigned reactive bounds are Q<sub>max</sub> = 0.60P and Q<sub>min</sub> = −0.40P. However, the current <code>runpp</code> call does not enable <code>enforce_q_lims</code>. The documented default is false, so the assigned bounds should not be described as enforced capability limits. A converged PV solution can require reactive output beyond those numbers. This distinction follows the <a href="https://pandapower.readthedocs.io/en/stable/powerflow/ac.html">AC solver options</a>.</p>
+      <p>Installed capacity also determines the dominant carrier displayed at a bus: the carrier with the largest installed MW wins. It is not necessarily the largest dispatched contributor in every scenario.</p>
+
+      <h2 id="ac">6. The AC Newton–Raphson calculation</h2>
+      <p>The electrical network is built at 60 Hz. Once branch and transformer equivalents are assembled, Kirchhoff's current law gives I = YV. Complex power injection at bus i is S<sub>i</sub> = V<sub>i</sub>I<sub>i</sub>* = P<sub>i</sub> + jQ<sub>i</sub>. With Y<sub>ij</sub> = G<sub>ij</sub> + jB<sub>ij</sub> and θ<sub>ij</sub> = θ<sub>i</sub> − θ<sub>j</sub>:</p>
+      <pre><code>P_i = Σ |V_i||V_j| [G_ij cos(θ_ij) + B_ij sin(θ_ij)]
+Q_i = Σ |V_i||V_j| [G_ij sin(θ_ij) − B_ij cos(θ_ij)]
+P_spec,i = P_gen,i − P_load,i
+Q_spec,i = Q_gen,i − Q_load,i</code></pre>
+      <p>These are nonlinear equations in voltage magnitudes and angles. At a PQ bus, net P and Q are specified and magnitude and angle are unknown. At a PV bus, P and voltage magnitude are specified, with Q and angle solved. The slack fixes voltage magnitude and reference angle and supplies the residual P and Q needed to balance the network.</p>
+      <pre><code>[ΔP]   [∂P/∂θ  ∂P/∂|V|] [Δθ  ]
+[ΔQ] = [∂Q/∂θ  ∂Q/∂|V|] [Δ|V|]
+
+state_next = state_current + correction</code></pre>
+      <p>Newton–Raphson repeatedly evaluates power mismatches, forms the Jacobian at the current state, solves for a correction, and updates the unknowns. The mismatch vector includes active-power equations at non-slack buses and reactive-power equations at PQ buses.</p>
+      <pre><code>pp.runpp(
+    net_run,
+    algorithm="nr",
+    calculate_voltage_angles=True,
+    init="dc",
+    numba=False,
+    max_iteration=50,
+)</code></pre>
+      <p>This is the project's actual call. DC initialization seeds the angle solution before the nonlinear AC iteration. Numba acceleration is explicitly disabled, and the iteration ceiling is 50. Tolerance is not explicitly overridden. The <a href="https://pandapower.readthedocs.io/en/stable/powerflow/ac.html">pandapower AC documentation</a> explains the Newton–Raphson and initialization options; the project requirements specify a lower version bound rather than a fully pinned environment.</p>
+      <h3>Connectivity and fallback</h3>
+      <p>Before solving, <code>pandapower.topology.unsupplied_buses</code> identifies buses unreachable from the slack. The solver works on a deep copy with those nodes removed. The full geographical dataset remains exportable, with a <code>connected</code> flag and missing results for excluded buses. All 54 exported buses are marked connected in the four saved datasets inspected here.</p>
+      <p>If the AC attempt raises an exception, the code tries <code>rundcpp</code> on that already constructed AC network. The manifest then reports DC if the fallback succeeds, or <code>none</code> if both attempts fail. An exception is not necessarily physical voltage collapse; input errors and other numerical problems can also enter this broad exception handler. The manifest's actual solver mode matters more than the scenario button's name.</p>
+
+      <h2 id="dc">7. DC Linear, and what the slack really represents</h2>
+      <p>DC power flow is a linear approximation of an AC transmission network. It does not mean the Visayas lines have been converted to direct current. With voltage magnitudes approximated as unity, small angle differences, and a lossless reactance-based approximation, the central relation is:</p>
+      <pre><code>P_ij,pu ≈ (θ_i − θ_j) / x_ij,pu
+P_MW = S_base,MVA × P_pu
+B_reduced × θ_non-slack = P_non-slack</code></pre>
+      <p>Angles in the approximation are in radians. Fixing the slack angle removes the reference ambiguity. The result is useful for active-power routing and angle estimates, but cannot establish reactive balance, actual voltage magnitudes, or AC resistive losses. VisayasGrid calls <code>pp.rundcpp</code>, the library's <a href="https://pandapower.readthedocs.io/en/stable/powerflow/dc.html">DC power-flow method</a>. The saved DC voltages are all 1.0 pu; that is not evidence of perfect voltage regulation.</p>
+      <h3>Explicit DC is a different build path</h3>
+      <p>The DC Linear option loads <code>/data/dc/</code>. Its build uses base <code>buses.csv</code> demand and generation, skips both scenario overlays, retains Ormoc's 350 kV nominal value, inserts no cross-voltage transformers, and represents all generation as static injections. An explicit DC build is therefore different from the automatic DC fallback on an AC-built network.</p>
+      <p><strong>AC Peak versus DC Linear is not a controlled comparison of solver accuracy.</strong> Inputs and network construction change as well as the solution method. To isolate approximation error, an engineering study would first hold injections, topology, and voltage-base treatment fixed, then compare solver outputs.</p>
+      <h3>Ormoc as an unconstrained boundary equivalent</h3>
+      <pre><code>P_slack = P_load + P_losses − P_generation
+positive P_slack: injection into the Visayas model
+negative P_slack: export out of the Visayas model</code></pre>
+      <p>The value displayed as <code>hvdc_import_mw</code> is the active injection returned by <code>res_ext_grid</code> at Ormoc. The UI interprets positive as import from Luzon and negative as export. This is a boundary-balancing proxy, not a converter-control simulation or a measured interchange schedule. The external Luzon and Mindanao networks are not explicitly represented.</p>
+      <p>The code compares the absolute injection with a <strong>440 MW</strong> reference and prints a warning if exceeded. It does not constrain, clip, redispatch, or reject that solution. There are no converter losses, firing-angle limits, or DC voltage/current equations in this boundary equivalent. The 350 kV map category must be read in that limited context.</p>
+
+      <h2 id="results">8. What the saved scenarios actually say</h2>
+      <div class="technical-table" role="region" aria-label="Saved scenario manifests inspected 5 September 2026" tabindex="0"><table><caption>Saved scenario manifests inspected 5 September 2026</caption><thead><tr><th scope="col">Scenario</th><th scope="col">Built UTC</th><th scope="col">Mode</th><th scope="col">Load MW</th><th scope="col">Gen MW</th><th scope="col">Slack MW</th></tr></thead><tbody><tr><td>Peak</td><td>2026-06-14</td><td>AC</td><td>2,307.4</td><td>2,210.9</td><td>+178.1</td></tr><tr><td>Annual mean</td><td>2026-06-09</td><td>AC</td><td>1,759.0</td><td>2,159.2</td><td>-355.0</td></tr><tr><td>Off-peak</td><td>2026-06-09</td><td>AC</td><td>1,196.5</td><td>1,765.8</td><td>-523.3</td></tr><tr><td>DC Linear</td><td>2026-09-05</td><td>DC</td><td>1,735.0</td><td>2,210.9</td><td>-475.9</td></tr></tbody></table></div>
+      <p>The dates are build timestamps, not the historical demand timestamps. Peak, mean, and off-peak report AC convergence in their saved manifests. The table deliberately preserves each file's values instead of presenting them as newly recomputed results.</p>
+      <h3>Peak balance: where the extra 81.6 MW goes</h3>
+      <pre><code>P_generation + P_slack − P_load
+= 2,210.9 + 178.1 − 2,307.4
+= 81.6 MW</code></pre>
+      <p>Because all exported buses are connected in this snapshot, that rounded residual is an approximate total modeled active loss, including the assumed transformers. It is about 3.54% of load. The generation shortfall before losses is only 96.5 MW, while the slack supplies 178.1 MW. This is why the sidebar's generation-minus-demand value cannot be substituted directly for interchange.</p>
+      <h3>Off-peak can still stress the network</h3>
+      <p>The saved off-peak snapshot exports 523.3 MW against the 440 MW reference: an excess of 83.3 MW, or about 18.9%. Reducing demand while holding substantial geothermal and coal generation online can increase export requirements. A solver can converge while the assumed operating point violates a transfer reference.</p>
+      <p>The saved line results contain two overloaded records at peak, four at annual mean, four off-peak, and three in DC Linear. The saved AC voltage ranges are 0.9467–1.0404 pu at peak, 0.9633–1.0420 pu at mean, and 0.9791–1.0437 pu off-peak. These describe this assumed model; they do not establish present-day violations on the physical grid.</p>
+      <h3>Saved outputs and current dispatch inputs differ</h3>
+      <p>At this inspection, <code>gen_scenarios.csv</code> sums to <strong>2,210.91 MW peak, 1,949.54 MW mean, and 1,607.34 MW off-peak</strong>. The saved mean and off-peak manifests instead contain 2,159.2 and 1,765.8 MW. They are older output artifacts. The DC dataset has a newer build timestamp and uses the current base dispatch total.</p>
+      <p>This freshness difference matters before interpreting scenario trends. Rebuilding the three AC snapshots from the current CSVs may change flow, voltage, slack injection, and PV classification. The documentation records the discrepancy rather than silently mixing new inputs with old outputs. For future disconnected cases, also remember that manifest load/generation totals sum all input buses, whereas slack interchange comes only from the solved component.</p>
+
+      <h2 id="legend">9. Reading the map as an engineer</h2>
+      <p>Line colors and bus colors are independently selectable. A nominal-voltage color describes equipment metadata. A loading or per-unit color describes a selected result. Changing color mode does not run another calculation.</p>
+      <div class="technical-table" role="region" aria-label="Color modes and visual meaning" tabindex="0"><table><caption>Color modes and visual meaning</caption><thead><tr><th scope="col">Encoding</th><th scope="col">Palette / symbol</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td>Nominal kV</td><td>Purple 350; red 230; amber 138; teal 69</td><td>Equipment voltage label</td></tr><tr><td>Line loading</td><td>Green; amber; red; dark red</td><td>&lt;50%; 50–&lt;80%; 80–100%; &gt;100%</td></tr><tr><td>Bus voltage</td><td>Green; amber; dark red</td><td>Nominal; caution; outside ±5%</td></tr><tr><td>Missing result</td><td>Gray</td><td>Unavailable, not zero</td></tr><tr><td>Submarine</td><td>Dashed line</td><td>Explicit cable classification</td></tr><tr><td>Generation</td><td>Carrier fill or ring</td><td>Primary installed-capacity fuel</td></tr></tbody></table></div>
+      <p>The exact loading boundaries are: below 50%; 50% up to but excluding 80%; 80% through 100%; and above 100%. A line at exactly 100% is in the high-loading band, but is not counted as overloaded. Voltage bands are inclusive 0.97–1.03 pu for green; 0.95–below 0.97 and above 1.03–1.05 for amber; outside 0.95–1.05 for red. These are application screening thresholds, not a full grid-code compliance assessment.</p>
+      <p>Generator-class buses are circles filled by primary carrier, and retain that carrier fill even when other buses use per-unit colors. Substations are squares; optional rings identify aggregated generation. Ormoc has a circular HVDC marker. Generator circle size increases logarithmically with installed capacity and is capped; its area is not proportional to MW. BESS uses the generic non-generator shape and a fallback carrier color if no palette entry exists.</p>
+      <p>The fuel palette uses dark gray for coal, green for geothermal, yellow for solar, cyan for wind, blue for hydro, yellow-green for biomass, orange for diesel, and light blue for run-of-river. The dominant fuel is chosen by installed capacity, not instantaneous dispatch.</p>
+      <p>Dashed lines denote submarine records; solid lines denote overhead records. With flow arrows enabled, arrows appear on undimmed lines for absolute active flow of at least 30 MW, and their direction follows the sign of <code>p_from_mw</code>. No arrow does not imply no current: the display threshold and reactive flow both matter.</p>
+      <h3>Filters change the view, not the solution</h3>
+      <p>Island and nominal-voltage filters subset the saved features. The current line filter resolves endpoint islands and keeps a line if either endpoint belongs to a selected island, subject to its voltage filter. This preserves inter-island connections incident on the selected area. A line can remain visible even when a separately voltage-filtered endpoint marker is hidden.</p>
+      <p>Sidebar totals and alerts use the filtered features. Their net is Σgeneration − Σload for that view; it omits losses and does not constitute a solved island interchange balance. The HVDC figure is shown only when the Ormoc feature remains in the filtered bus set. Clicking an alert focuses the most overloaded visible line or the visible bus with the largest voltage deviation. Selecting an element highlights its local connections; it does not perform a contingency calculation.</p>
+
+      <h2 id="tables">10. Data tables, popovers, and exported quantities</h2>
+      <p>The Data table has two tabs. The bus tab shows Name, Island, kV, Load MW, Gen MW, and V pu. The line tab shows From, To, kV, Loading %, P MW, and Submarine. Header buttons sort the selected column, numeric fields sort numerically, and missing values remain last. Rows correspond to the filtered view; clicking or pressing Enter locates the element on the map. Escape closes the table.</p>
+      <p>There is no separate unit-level generator tab. The generator-unit CSV is an offline reference, while bus generation in the app is aggregated. Additional fields are available through the selected element's panel or directly in GeoJSON.</p>
+      <div class="technical-table" role="region" aria-label="Engineering field dictionary" tabindex="0"><table><caption>Engineering field dictionary</caption><thead><tr><th scope="col">Fields</th><th scope="col">Units / meaning</th><th scope="col">Where to inspect</th></tr></thead><tbody><tr><td>name, island, bus_type</td><td>Bus identity, geography, display class</td><td>Bus CSV / GeoJSON / panel</td></tr><tr><td>v_nom, voltages_kv</td><td>Nominal labels in kV; not a winding model</td><td>Bus CSV / GeoJSON</td></tr><tr><td>p_mw, q_mvar, load_count</td><td>Demand MW, MVAr, base feeder count</td><td>Bus panel / inputs</td></tr><tr><td>gen_mw, gen_capacity_mw</td><td>Estimated dispatch versus installed MW</td><td>Table / bus panel</td></tr><tr><td>gen_carriers, primary_carrier</td><td>Fuel list and largest installed-capacity carrier</td><td>Bus panel / GeoJSON</td></tr><tr><td>is_slack, connected</td><td>Reference-bus flag and solver reachability</td><td>Bus GeoJSON</td></tr><tr><td>vm_pu, va_degree</td><td>Voltage magnitude pu and reference-relative angle °</td><td>Bus technical details</td></tr><tr><td>hvdc_import_mw</td><td>Signed Ormoc boundary injection MW</td><td>Ormoc / manifest</td></tr><tr><td>line_id, from_bus, to_bus</td><td>Branch key and signed reference orientation</td><td>Line CSV / GeoJSON</td></tr><tr><td>voltage_kv, length_km</td><td>Nominal class and endpoint-distance proxy</td><td>Line panel</td></tr><tr><td>r_ohm_per_km, x_ohm_per_km</td><td>Series impedance Ω/km</td><td>Line technical details</td></tr><tr><td>c_nf_per_km</td><td>Shunt capacitance nF/km; CSV value may precede AC fill</td><td>Line CSV / GeoJSON</td></tr><tr><td>max_i_ka, parallel</td><td>Per-circuit current rating and circuit multiplier</td><td>Line panel / properties</td></tr><tr><td>is_submarine, cable_type</td><td>Cable classification</td><td>Table / line panel</td></tr><tr><td>loading_percent, p_from_mw, i_from_ka</td><td>Maximum-end current loading %, signed MW, from current kA</td><td>Table / technical details</td></tr><tr><td>generator_id, substation, p_nom_mw</td><td>Unit identity, attachment, installed MW</td><td>generators.csv</td></tr><tr><td>carrier, build_year, dispatch_mw</td><td>Unit fuel, vintage, estimated base output</td><td>generators.csv</td></tr></tbody></table></div>
+      <p>The bus panel exposes reactive demand, feeder count, dispatch versus installed capacity, fuel chips, and Ormoc interchange. Its collapsed technical section contains voltage magnitude, angle, and slack status. The line panel exposes length, resistance, reactance, current rating, and from-end current. Capacitance and certain metadata remain available in the exported properties even when not shown in the compact panel.</p>
+      <p>GeoJSON coordinates are [longitude, latitude]; the map converts them to Leaflet's latitude/longitude order. Line geometry has only two endpoints. A positive <code>p_from_mw</code> means active power enters the branch at its named from end; a negative value reverses the nominal arrow. In AC, receiving-end MW differs because of loss. The exporter does not publish receiving-end power, branch reactive flows, solved generator Q, or transformer results.</p>
+      <p>Missing results should be read as unavailable, never as zero. Nulls show as dashes in the table and gray in the relevant color functions. The exporter normalizes input NaNs, but solver-result NaNs are not consistently cleaned before JSON serialization. Regenerated datasets should therefore be checked for nonstandard NaN or Infinity tokens, especially after topology changes or failed solves.</p>
+
+      <h2 id="pipeline">11. Frameworks and the reproducible calculation path</h2>
+      <p>The preparation layer is Python and pandas; pandapower builds electrical elements, checks topology, and runs power flow, with NetworkX included in the Python requirements. PyPSA-PH is the inherited data source, not the solver called by this application. The frontend uses React, Vite, react-leaflet/Leaflet, and Tailwind; Vitest covers frontend utilities and data behavior. Vercel serves the application and precomputed files.</p>
+      <pre><code>PyPSA-PH-derived inputs + documented corrections
+    ↓ process_temp.py / reviewed clean CSVs
+buses.csv + lines.csv + generators.csv
+    ↓ hourly-demand collapse + carrier factors
+load_scenarios.csv + gen_scenarios.csv
+    ↓ build_data.py: construct → connectivity → solve
+buses.geojson + lines.geojson + manifest.json
+    ↓ React fetches the selected directory
+map + data table + details + filtered summaries</code></pre>
+      <p>Each scenario loads three files together. Peak uses <code>/data/</code>; annual mean uses <code>/data/mean/</code>; off-peak uses <code>/data/offpeak/</code>; DC Linear uses <code>/data/dc/</code>. The legacy <code>ac</code> selection also resolves to the root. All power-flow computation happens offline; selecting a scenario fetches a stored solution. There is no runtime power-flow backend.</p>
+      <h3>Rebuild commands</h3>
+      <p>From the VisayasGrid project directory, using its own prepared virtual environment:</p>
+      <pre><code># Recreate scenario CSVs from the existing clean data:
+.venv/bin/python scripts/process_temp.py --only-snapshots
+
+# Recompute the four output directories:
+.venv/bin/python scripts/build_data.py --scenario peak
+.venv/bin/python scripts/build_data.py --scenario mean
+.venv/bin/python scripts/build_data.py --scenario offpeak
+.venv/bin/python scripts/build_data.py --mode dc</code></pre>
+      <p>These commands overwrite derived files and are a reproducibility recipe, not commands executed for this article. Review the clean inputs first. Running <code>process_temp.py</code> without <code>--only-snapshots</code> reconstructs the clean CSVs from the inherited temporary dataset and can overwrite later manual corrections. The source registry and input diffs are part of the engineering review.</p>
+      <p>After rebuilding, check connectivity, actual solver mode, finite results, voltage ranges, overloads, interchange, and the difference between input totals and published manifests. Record dependency versions and an input revision or hash alongside results for repeatability; the current manifest records build time and summary values but not that complete provenance.</p>
+
+      <h2 id="limits">12. What this model can establish</h2>
+      <p>The model is useful for examining topology, tracing assumed active-power transfers, comparing specified operating points, and identifying results that deserve a closer engineering check. It makes the connection between geographical infrastructure and steady-state electrical behavior inspectable.</p>
+      <p>Its conclusions remain conditional on inherited impedances, assumed cable parameters, proxy route lengths, aggregated loads and generators, constructed transformers, and available voltage support. Numerical convergence establishes that the selected equations found a solution; it does not certify that dispatch is feasible or that the physical system is secure.</p>
+      <ul>
+        <li><strong>No N−1 assessment:</strong> it does not automatically remove each line, transformer, or generator and resolve the network.</li>
+        <li><strong>No dynamics:</strong> frequency nadir, inertia, governor response, transient stability, and converter controls are outside this steady-state model.</li>
+        <li><strong>No fault or protection study:</strong> there is no short-circuit calculation, relay coordination, or breaker-duty assessment.</li>
+        <li><strong>No constrained dispatch:</strong> thermal limits, slack interchange limits, and reactive capability do not collectively constrain an optimization.</li>
+        <li><strong>No annual energy/storage simulation:</strong> the mean snapshot does not establish annual losses, curtailment, storage duration, or reliability indices.</li>
+        <li><strong>Incomplete equipment representation:</strong> internal transformer results, detailed 69 kV networks, external grids, and every existing or planned generator are not fully represented.</li>
+      </ul>
+      <p>For an engineering review, I would start with the snapshot timestamp and input revision, verify the effective voltage bases and equipment parameters, inspect the largest residuals and loading values, and then test constrained or contingency cases in a reconciled network. VisayasGrid supplies a transparent starting point for that work.</p>
+
+      <h2 id="references">Source files and method references</h2>
+      <p>The implementation is the primary source for this guide. These links make its assumptions and display behavior inspectable; repository links track the main branch and may evolve after the September 2026 inspection.</p>
+      <ul>
+        <li><a href="https://github.com/julius-darang/visayasgrid/blob/main/scripts/process_temp.py">process_temp.py</a> — feeder estimates, aggregation, distances, and snapshot selection.</li>
+        <li><a href="https://github.com/julius-darang/visayasgrid/blob/main/scripts/constants.py">constants.py</a> — carrier factors, cable defaults, aliases, and classifications.</li>
+        <li><a href="https://github.com/julius-darang/visayasgrid/blob/main/scripts/build_data.py">build_data.py</a> — electrical construction, solver options, and exports.</li>
+        <li><a href="https://github.com/julius-darang/visayasgrid/tree/main/data">Input CSVs and provenance registry</a> — equipment records and scenario inputs.</li>
+        <li><a href="https://github.com/julius-darang/visayasgrid/tree/main/web/public/data">Saved scenario datasets</a> — GeoJSON results and manifests.</li>
+        <li><a href="https://github.com/julius-darang/visayasgrid/tree/main/web/src">Frontend source</a> — legends, endpoint filters, details, and table behavior.</li>
+        <li><a href="https://pandapower.readthedocs.io/en/stable/powerflow/ac.html">pandapower AC solver</a>, <a href="https://pandapower.readthedocs.io/en/stable/powerflow/dc.html">DC solver</a>, and <a href="https://pandapower.readthedocs.io/en/stable/elements/line.html">line model</a> — library method and result conventions.</li>
+      </ul>
+      <p><a href="../proj/visayasgrid.html">Return to the project case study →</a></p>
+    </div>
+  </article>
+
+<!--#newsletter-->
+  <section class="article-newsletter" aria-labelledby="article-newsletter-title">
+    <div class="wrap">
+      <div class="article-newsletter-inner">
+        <div>
+          <p class="article-newsletter-label">Occasional notes</p>
+          <h2 id="article-newsletter-title">Notes from the intersection.</h2>
+          <p>Power systems, AI tools, and building useful things in public.</p>
+        </div>
+        <a href="https://juliusdarang.substack.com/" class="article-newsletter-link">Subscribe on Substack <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+<!--#/newsletter-->
+
+  <div class="article-footer">
+    <div class="wrap">
+      <h3>More Writing</h3>
+      <div class="related-list">
+        <div class="related-item">
+          <div class="card-title-row">
+            <a href="modelling-the-philippine-grid.html" class="related-title">I built a live model of the Philippine grid. The code was the easy part.</a>
+            <a href="modelling-the-philippine-grid.html" class="card-proceed">Read →</a>
+          </div>
+          <p class="related-date">Jun 2026</p>
+        </div>
+        <div class="related-item">
+          <div class="card-title-row">
+            <a href="visayas-grid-engineering.html" class="related-title">Why the Visayas Grid is the most interesting engineering problem in the Philippines</a>
+            <a href="visayas-grid-engineering.html" class="card-proceed">Read →</a>
+          </div>
+          <p class="related-date">Mar 2026</p>
+        </div>
+        <div class="related-item">
+          <div class="card-title-row">
+            <a href="how-to-create-a-website.html" class="related-title">How I Created and Deployed a Website From Scratch</a>
+            <a href="how-to-create-a-website.html" class="card-proceed">Read →</a>
+          </div>
+          <p class="related-date">Apr 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--#footer-->
+  <div class="wrap">
+    <footer>
+      <span>Julius Darang — REE · Philippines</span>
+      <a href="mailto:colesjulius3@gmail.com">julius.darang@gmail.com</a>
+    </footer>
+  </div>
+<!--#/footer-->
+
+</body>
+</html>

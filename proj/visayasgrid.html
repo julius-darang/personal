@@ -11,9 +11,37 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Visayas Grid — Case Study" />
   <meta property="og:description" content="An interactive map and load-flow model of the Philippine Visayas transmission grid — computed offline, served as static files, no backend." />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://juliusdarang.com/proj/visayasgrid.html" />
   <meta property="og:image" content="https://juliusdarang.com/assets/visayasgrid.png" />
+  <meta property="og:image:alt" content="Visayas Grid interactive map showing transmission lines and substations." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Visayas Grid — Case Study" />
+  <meta name="twitter:description" content="An interactive map and load-flow model of the Philippine Visayas transmission grid, computed offline and served as static files." />
+  <meta name="twitter:image" content="https://juliusdarang.com/assets/visayasgrid.png" />
+  <meta name="twitter:image:alt" content="Visayas Grid interactive map showing transmission lines and substations." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Visayas Grid",
+    "url": "https://visayasgrid.vercel.app",
+    "description": "An interactive map and pandapower load-flow model of the Philippine Visayas transmission grid.",
+    "applicationCategory": "EngineeringApplication",
+    "operatingSystem": "Web",
+    "image": "https://juliusdarang.com/assets/visayasgrid.png",
+    "author": {
+      "@type": "Person",
+      "name": "Julius Darang",
+      "url": "https://juliusdarang.com/"
+    },
+    "codeRepository": "https://github.com/julius-darang/visayasgrid",
+    "programmingLanguage": ["Python", "JavaScript"]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,7 +61,7 @@
 -->
 <!--#nav-->
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
   <nav aria-label="Main navigation">
     <div class="wrap nav-inner">
       <a href="../index.html" class="nav-logo">Julius Darang</a>
@@ -73,6 +101,7 @@
         <a href="https://visayasgrid.vercel.app">Live demo →</a>
         <a href="https://github.com/julius-darang/visayasgrid">GitHub →</a>
         <a href="../blogs/how-i-built-the-visayas-grid.html">Full explainer →</a>
+        <a href="../blogs/visayas-grid-technical-guide.html">Technical engineering guide →</a>
       </div>
     </div>
   </div>
@@ -112,6 +141,9 @@
 
       <h2>The result</h2>
       <p>It's live, unit-tested with Vitest, and — importantly — honest about its data. Submarine cables use IEC 60840 XLPE parameters instead of guesses; loads that NGCP doesn't expose are gap-filled from clearly flagged estimates; and every modeling constant lives in one file with a source citation. The prototype is built so fuller real data can be swapped in without touching the frontend. The heavier, full-stack version of this idea lives in its sibling project, <a href="https://github.com/julius-darang/powergrid">powergrid</a>.</p>
+
+      <h2>The engineering documentation</h2>
+      <p>The <a href="../blogs/visayas-grid-technical-guide.html">technical engineering guide</a> explains the bus and transformer equivalents, line parameters and ratings, generator dispatch, demand snapshots, AC Newton–Raphson and DC Linear calculations, saved results, legends, and data tables. It also documents the assumptions and scenario freshness differences that affect interpretation.</p>
 
       <h2>Stack</h2>
       <div class="card-stack">

@@ -9,6 +9,14 @@
     <atom:link href="https://juliusdarang.com/feed.xml" rel="self" type="application/rss+xml" />
 
     <item>
+      <title>Inside the Visayas Grid Model: A Power Systems Engineering Guide</title>
+      <link>https://juliusdarang.com/blogs/visayas-grid-technical-guide.html</link>
+      <description>Buses, lines, generators, load assumptions, AC and DC power-flow equations, scenario results, and a field guide to the VisayasGrid map and data tables.</description>
+      <pubDate>Sat, 05 Sep 2026 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/visayas-grid-technical-guide.html</guid>
+    </item>
+
+    <item>
       <title>How I Built an Interactive Model of the Visayas Power Grid</title>
       <link>https://juliusdarang.com/blogs/how-i-built-the-visayas-grid.html</link>
       <description>A plain-language look at how public data, engineering assumptions, pandapower, and a simple static website became an interactive model of the Visayas transmission network.</description>
@@ -46,6 +54,14 @@
       <description>An isolated island grid, aggressive renewable targets, and aging infrastructure — what makes the Visayas one of the most complex power systems in Southeast Asia.</description>
       <pubDate>Sun, 15 Mar 2026 10:00:00 +0000</pubDate>
       <guid>https://juliusdarang.com/blogs/visayas-grid-engineering.html</guid>
+    </item>
+
+    <item>
+      <title>My First LLM Subscription</title>
+      <link>https://juliusdarang.com/blogs/my-first-llm-subscription.html</link>
+      <description>What I learned from my first LLM subscription, experimenting with free models, and finding a coding-agent workflow before paying more.</description>
+      <pubDate>Sun, 01 Sep 2024 12:00:00 +0000</pubDate>
+      <guid>https://juliusdarang.com/blogs/my-first-llm-subscription.html</guid>
     </item>
 
   </channel>

@@ -15,9 +15,11 @@
   <meta property="og:url" content="https://juliusdarang.com/" />
   
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Julius Darang" />
   <meta name="twitter:description" content="Power-systems engineer and AI-native builder. I model power grids, build software, and write about systems, AI, and building what matters." />
+  <meta name="twitter:image" content="https://juliusdarang.com/assets/1000021423.png" />
+  <meta name="twitter:image:alt" content="Portrait of Julius Darang." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,6 +28,7 @@
   <script src="assets/theme.js"></script>
   <link rel="stylesheet" href="assets/main.css" />
   <meta property="og:image" content="https://juliusdarang.com/assets/1000021423.png" />
+  <meta property="og:image:alt" content="Portrait of Julius Darang." />
   
   <script type="application/ld+json">
   {
@@ -59,7 +62,7 @@
 -->
 <!--#nav-->
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
   <nav aria-label="Main navigation">
     <div class="wrap nav-inner">
       <a href="index.html" class="nav-logo">Julius Darang</a>
@@ -88,7 +91,7 @@
 
   <section class="hero" id="main-content">
     <div class="wrap">
-      <p class="hero-name">Power-Systems Engineer · AI-Native Builder</p>
+      <p class="hero-name">Engineering × Technology × Philosophy</p>
       <h1>Think in systems.<br /><strong>Build what matters.</strong></h1>
       <p class="hero-sub">I model power grids and build the software — increasingly with AI agents — that makes them legible. I also write about systems, AI, and the examined life.</p>
       <div class="hero-actions">
@@ -157,13 +160,17 @@
     <div class="wrap">
       <div class="newsletter-inner">
         <div>
-          <h2>Think deeper.<br />Build smarter.</h2>
-          <p>Weekly essays on power systems, AI tools, and building a meaningful technical career.</p>
+          <h2>Notes from the<br />intersection.</h2>
+          <p>Occasional essays on power systems, AI tools, and building useful things in public.</p>
         </div>
-        <form class="newsletter-form" action="https://juliusdarang.substack.com/subscribe" method="post">
-          <input type="email" name="email" placeholder="Your email address" required />
-          <button type="submit">Subscribe</button>
-        </form>
+        <div class="newsletter-form-wrap">
+          <form class="newsletter-form" action="https://juliusdarang.substack.com/subscribe" method="post" aria-label="Subscribe to Julius Darang's newsletter">
+            <label class="sr-only" for="newsletter-email">Email address</label>
+            <input id="newsletter-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+          <p class="newsletter-note">No fixed schedule. Unsubscribe anytime.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -174,8 +181,8 @@
         <div class="about-left">
           <div class="about-avatar">
             <picture>
-              <source srcset="assets/profile.tiff" type="image/tiff" />
-              <img src="assets/1000021423.png" alt="Julius Darang" loading="lazy" />
+              <source srcset="assets/profile.webp" type="image/webp" />
+              <img src="assets/1000021423.png" alt="Julius Darang" width="1109" height="1418" loading="lazy" decoding="async" />
             </picture>
           </div>
           <div class="about-socials">
@@ -206,7 +213,7 @@
 <!--#footer-->
   <div class="wrap">
     <footer>
-      <span>Julius Darang — REE · Philippines</span>
+      <span>Julius Darang · REE · Philippines</span>
       <a href="mailto:colesjulius3@gmail.com">julius.darang@gmail.com</a>
     </footer>
   </div>
